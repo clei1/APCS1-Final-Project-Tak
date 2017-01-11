@@ -1,29 +1,36 @@
 Team BurGerCing
 Grace Cuenca, Brian Kwong, Connie Lei
 APCS1 pd1
-HW#57— ...and Keeping It Pointed Up
+HW#57—- ...and Keeping It Pointed Up
 
-—Meeting at Friday 5PM to work as a group
+—Meeting at Friday January 13, 2017 @ 5PM to work as a group
 
 To Do List:
 1. Create a working skeleton for each class.
+   Current classes:
+   - Piece.java
+     -Capstone.java (extends Piece.java)
+     -Stone.java (extends piece.java)
+   - Woo.java (driver, which will contain board functionality)
 2. Modify each method in a class so it compiles.
+   -Take baby steps to change methods, test for compilation, and continue
 3. Work on implementing Piece.java
 4. Write the methods Piece will use.
 5. Make sure Piece compiles and test the methods in a test main.
 6. Write both Capstone and Stone.
-7. Test both Capstone and Stone.
+7. Test both Capstone and Stone in the main method.
 8. Test the previous classes in conjunction with Piece’s overridden constructor.
 9. Work on Woo by creating the while loop for the game’s continuous running.
+  -Before final while loop, we will create smaller functions that will simply test for class compilation rather than the full functionality of the game.
 10. Write the methods Woo use to generate the board and check the winning game.
 11. Determine where player inputs go and expected outputs.
 12. Modify checks in order to robustify.
 13. Implement piece creation.
-14. Manually test the board’s 2D array.
-15. Put it all together???
+14. Manually test the board’s 2D array; in other wordsl simulate a gameplay
+15. Put it all together???*
 16. Test.
 17. Debug.
 18. Test.
-19. Make implementation of tourney and other complexities.
+19. Make implementation of tourney and other complexities, essentially an extension that creates more variety in the playability.
 
 *Figure out what put is.
