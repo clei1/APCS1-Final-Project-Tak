@@ -1,11 +1,10 @@
-<Team Name>
-<Member 0 Name>
-<Member 1 Name>
-<Member 2 Name>
-pd <pd#>
+BurGerCing
+Grace Cuenca
+Brian Kwong
+Connie Lei
+pd 1
 ---------------------
-<Project>
-
+Tak Game
 
 Suggested usage: 
 * Replace all fields, angle brackets included, with specified info.
@@ -59,9 +58,32 @@ tales of wisdom gained...
 ==============================================================
 
 
-yyyy-mm-dd
+2017-01-05
 --------------------------------------------------------------
-<Member> :: <Thing member did.>
-<Member> :: <Thing member did.>
-<Member> :: <Thing member did.>
+Grace :: Discussed possible project ideas.
+Brian :: <Thing member did.>
+Connie :: <Thing member did.>
+==============================================================
+
+2017-01-09
+--------------------------------------------------------------
+Grace :: Created UML diagrams on KtS.
+Brian :: <Thing member did.>
+Connie :: <Thing member did.>
+==============================================================
+
+2017-01-10
+--------------------------------------------------------------
+Grace :: Edited todo.txt after discussion with team mates.
+Created outline of flowchart on KtS.
+Brian :: <Thing member did.>
+Connie :: <Thing member did.>
+==============================================================
+
+2017-01-11
+--------------------------------------------------------------
+Grace :: Created the skeleton for Piece.java
+Pushed Piece.java, template_devlog1.txt, and .gitignore to gitHub.
+Brian :: <Thing member did.>
+Connie :: <Thing member did.>
 ==============================================================
