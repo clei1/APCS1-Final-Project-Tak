@@ -62,14 +62,14 @@ tales of wisdom gained...
 --------------------------------------------------------------
 Grace :: Discussed possible project ideas.
 Brian :: <Thing member did.>
-Connie :: <Thing member did.>
+Connie :: Typed up proposal.pdf
 ==============================================================
 
 2017-01-09
 --------------------------------------------------------------
-Grace :: Created UML diagrams on KtS.
+Grace :: Discussed and created UML diagrams on KtS.
 Brian :: <Thing member did.>
-Connie :: <Thing member did.>
+Connie :: Discussed and created UML diagrams on KTS, typed up UML diagrams.
 ==============================================================
 
 2017-01-10
@@ -77,7 +77,7 @@ Connie :: <Thing member did.>
 Grace :: Edited todo.txt after discussion with team mates.
 Created outline of flowchart on KtS.
 Brian :: <Thing member did.>
-Connie :: <Thing member did.>
+Connie :: Typed up flowchart on draw.io
 ==============================================================
 
 2017-01-11
@@ -85,5 +85,5 @@ Connie :: <Thing member did.>
 Grace :: Created the skeleton for Piece.java
 Pushed Piece.java, template_devlog1.txt, and .gitignore to gitHub.
 Brian :: <Thing member did.>
-Connie :: <Thing member did.>
+Connie :: Created skeleton for Woo.java
 ==============================================================
