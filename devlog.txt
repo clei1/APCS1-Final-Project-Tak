@@ -1,0 +1,89 @@
+BurGerCing
+Grace Cuenca
+Brian Kwong
+Connie Lei
+pd 1
+---------------------
+Tak Game
+
+Suggested usage: 
+* Replace all fields, angle brackets included, with specified info.
+  eg, pd <pd#> --> pd 3
+* Delete these instructions once all teammates understand usage.
+
+devlog--
+Use keyboard shortcut to jump to end,
+ replicate entry template,
+ modify appropriately.
+
+zone of reflection--
+Flesh out each category whenever necessary, appropriate.
+ Need not be fully filled in until end of project,
+ but best done as you go along.
+
+
+/////////// Zone of Reflection \\\\\\\\\\\
+------------------------------------------
+OBSTACLES OVERCOME
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+wow we so BOSS bc...
+
+UNRESOLVED ISSUES
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+blah blah pesky bug...
+maybe some of these will move into the Obs.Ovrcm section...
+
+COOL STUFF LEARNED
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+wow! oo!...
+
+MID-DEVELOPMENT DESIGN CHANGES
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+we changed ___ to ___ bc...
+
+LESSONS LEARNED
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+tales of wisdom gained...
+||||||||||||||||||||||||||||||||||||||||||
+
+
+
+ ______   ______   __   __   __       ______   _______     
+/_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\    
+\:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__  
+ \:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \    \:\ \ \ \\:\ /____/\ 
+  \:\ \ \ \\::___\/_\:\_/.:\ \\:\ \____\:\ \ \ \\:\\_  _\/ 
+   \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \ 
+    \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/ 
+==============================================================
+
+
+2017-01-05
+--------------------------------------------------------------
+Grace :: Discussed possible project ideas.
+Brian :: <Thing member did.>
+Connie :: Typed up proposal.pdf
+==============================================================
+
+2017-01-09
+--------------------------------------------------------------
+Grace :: Discussed and created UML diagrams on KtS.
+Brian :: <Thing member did.>
+Connie :: Discussed and created UML diagrams on KTS, typed up UML diagrams.
+==============================================================
+
+2017-01-10
+--------------------------------------------------------------
+Grace :: Edited todo.txt after discussion with team mates.
+Created outline of flowchart on KtS.
+Brian :: <Thing member did.>
+Connie :: Typed up flowchart on draw.io
+==============================================================
+
+2017-01-11
+--------------------------------------------------------------
+Grace :: Created the skeleton for Piece.java
+Pushed Piece.java, template_devlog1.txt, and .gitignore to gitHub.
+Brian :: <Thing member did.>
+Connie :: Created skeleton for Woo.java
+==============================================================
