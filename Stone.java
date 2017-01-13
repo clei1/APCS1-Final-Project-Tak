@@ -3,7 +3,8 @@ public class Stone extends Piece {
     boolean isWall;
 
     public Stone(int color, int x, int y, boolean b){
-	Super(color, x, y);
+	super(color, x, y);
+	isWall = b;
     }
 
     public String toString() {
@@ -15,7 +16,7 @@ public class Stone extends Piece {
 	    s = "WHITE ";
 	}
 	else {
-	    throw new IllegalArgumentException();
+	    throw new IllegalArgumentException("Not a valid color.");
 	}
 	if (isWall) {
 	    s += "WALL";
@@ -23,6 +24,7 @@ public class Stone extends Piece {
 	else {
 	    s += "STONE";
 	}
+	return s;
     }
 
 }
