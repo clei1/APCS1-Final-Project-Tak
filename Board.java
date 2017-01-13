@@ -23,7 +23,20 @@ public class Board{
       =================================*/
 
     public String toString(){
-	return board;
+	String s = "";
+	for (ArrayList[] i : board) {
+	    for (int j = 0; j < i.length; j++) {
+		ArrayList list = i[j];
+		if (list.size() == 0) {
+		    s += "[EMPTY SPACE] ";
+		}
+		else {
+		    s += "[" + list.get( list.size()-1 ).toString() + "] ";
+		}
+	    }
+	    s += "\n";
+	}
+	return s;
     }
 
     /*~~~~~~~~~~~~~METHODS~~~~~~~~~~~~~*/
