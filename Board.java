@@ -69,7 +69,7 @@ public class Board{
       =================================*/
 
     public boolean isRoad(){
-	if(!isEmpty(0,0) && !isEmpty(0,1) && !isEmpty(0,2) && !isEmpty(0,3) && !isEmpty(0,4) && !isEmpty(0,5)){
+	if(!isEmpty(0,0) && !isEmpty(0,1) && !isEmpty(0,2) && !isEmpty(0,3) && !isEmpty(0,4)){
 	    return true;
 	}
 	else{
