@@ -15,6 +15,17 @@ public class Board{
 	}
     }
 
+    /*~~~~~~~~~~~~~OVERLOADED TOSTRING~~~~~~~~~~~~~*/
+    /*=================================
+      String toString()
+      precond: an instantiated board
+      postcond: the toString() of the board will be updated to reflect player moves
+      =================================*/
+
+    public String toString(){
+	return board;
+    }
+
     /*~~~~~~~~~~~~~METHODS~~~~~~~~~~~~~*/
     /*=================================
       boolean isEmpty(int row, int column)
@@ -26,8 +37,18 @@ public class Board{
     public boolean isEmpty(int row, int column){
 	return (board[row][column]).size() == 0;
     }
+    
+    /*=================================
+      boolean isNextTo(int row, int column)
+      precond: an instantiated board
+      postcond: returns true if the inputted tile is directly adjacent to the tile the player is currently on
+      returns false otherwise
+      =================================*/
 
+    public boolean isNextTo(int row, int column){
+	return (row == x + 1 || row == x - 1 || row == x) && (column == y+1 || column == y - 1 || column = y);
+    }
     
-    
+
 }
 
