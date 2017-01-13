@@ -61,7 +61,21 @@ public class Board{
     public boolean isNextTo(int row, int column){
 	return (row == x + 1 || row == x - 1 || row == x) && (column == y+1 || column == y - 1 || column = y);
     }
-    
+    /*=================================
+      boolean isRow()
+      precond: an instantiated board
+      postcond: returns true if the player has successfully created a row
+      returns false otherwise
+      =================================*/
 
+    public boolean isRoad(){
+	if(!board.isEmpty(0,0) && !board.isEmpty(0,1) && !board.isEmpty(0,2) && !board.isEmpty(0,3) && !board.isEmpty(0,4) && !board.isEmpty(0,5)){
+	    return true;
+	}
+	else{
+	    return false;
+	}
+
+    }
 }
 
