@@ -61,14 +61,14 @@ tales of wisdom gained...
 2017-01-05
 --------------------------------------------------------------
 Grace :: Discussed possible project ideas.
-Brian :: <Thing member did.>
+Brian :: Discussed ideas and their feasibility.
 Connie :: Typed up proposal.pdf
 ==============================================================
 
 2017-01-09
 --------------------------------------------------------------
 Grace :: Discussed and created UML diagrams on KtS.
-Brian :: <Thing member did.>
+Brian :: Discussed UML diagrams.
 Connie :: Discussed and created UML diagrams on KTS, typed up UML diagrams.
 ==============================================================
 
@@ -76,7 +76,7 @@ Connie :: Discussed and created UML diagrams on KTS, typed up UML diagrams.
 --------------------------------------------------------------
 Grace :: Edited todo.txt after discussion with team mates.
 Created outline of flowchart on KtS.
-Brian :: <Thing member did.>
+Brian :: Worked out general progression of the game.
 Connie :: Typed up flowchart on draw.io
 ==============================================================
 
@@ -84,6 +84,13 @@ Connie :: Typed up flowchart on draw.io
 --------------------------------------------------------------
 Grace :: Created the skeleton for Piece.java
 Pushed Piece.java, template_devlog1.txt, and .gitignore to gitHub.
-Brian :: <Thing member did.>
+Brian :: Discussed what should be included in the MVP.
 Connie :: Created skeleton for Woo.java
+==============================================================
+
+2017-01-12
+--------------------------------------------------------------
+Grace :: Updated UML diagrams, worked on making Board compilable.
+Brian :: Added Player.java, Stone.java
+Connie :: Worked on driver file.
 ==============================================================
