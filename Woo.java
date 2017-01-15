@@ -13,8 +13,16 @@ public class Woo {
     /*~~~~~~~~~~~~~METHODS~~~~~~~~~~~~~*/
     public static void playerTurn(Player p, Board b) {
 	System.out.println("Player " + p.name + ", it's now your turn.");
-	System.out.println("Place a stone.");
+	System.out.println("Place a stone, wall, or capstone.");
 
+	System.out.println("Choose a piece to place");
+	String pieceType = Keyboard.readString();
+	while(pieceType != "stone" || pieceType != "wall" || pieceType != "capstone"){
+	    System.out.println(pieceType);
+	    System.out.println("That is an invalid input. Please input either 'stone,' 'capstone,' or 'wall'.");
+	    pieceType = Keyboard.readString();
+	}
+	
 	System.out.print("Location: ");
 	int x = Keyboard.readInt();
 	int y = Keyboard.readInt();
@@ -22,7 +30,7 @@ public class Woo {
 	boolean stonePlaced = false;
 	while (!stonePlaced) {
 	    try {
-		p.placePiece(x, y, b, "stone");
+		p.placePiece(x, y, b, pieceType);
 		stonePlaced = true;
 	    }
 	    catch (Exception e) {
