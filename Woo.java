@@ -14,11 +14,24 @@ public class Woo {
     public static void playerTurn(Player p, Board b) {
 	System.out.println("Player " + p.name + ", it's now your turn.");
 	System.out.println("Place a stone.");
-	System.out.print("Row: ");
+
+	System.out.print("Location: ");
 	int x = Keyboard.readInt();
-	System.out.print("Col: ");
 	int y = Keyboard.readInt();
-	p.placePiece(x, y, b, "stone");
+
+	boolean stonePlaced = false;
+	while (!stonePlaced) {
+	    try {
+		p.placePiece(x, y, b, "stone");
+		stonePlaced = true;
+	    }
+	    catch (Exception e) {
+		System.out.println("Stone could not be placed. Try again.");
+		System.out.print("Location: ");
+		x = Keyboard.readInt();
+		y = Keyboard.readInt();
+	    }
+	}
     }
     
     // public void gameStart() {
@@ -48,7 +61,7 @@ public class Woo {
 	boolean isPlayerOneTurn = true;
 
 	// main game loop
-	while (!woah.isRoad()){
+	while (!woah.isRoad(0) && !woah.isRoad(1)){
 	    if (isPlayerOneTurn) {
 		playerTurn(player1, woah);
 	    }
@@ -57,6 +70,13 @@ public class Woo {
 	    }
 	    System.out.println(woah);
 	    isPlayerOneTurn = !isPlayerOneTurn;
+	}
+	
+	if (woah.isRoad(0)) {
+	    System.out.println("Black won!");
+	}
+	else {
+	    System.out.println("White won!");
 	}
     }
 

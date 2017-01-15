@@ -50,6 +50,23 @@ public class Board{
     public boolean isEmpty(int row, int column){
 	return (board[row][column]).size() == 0;
     }
+
+    /*=================================
+      int stackOwner(int x, int y)
+      precond: an instantiated board
+      postcond: -1 if empty, 0 if black, 1 if white
+      =================================*/
+    public int stackOwner(int x, int y){
+	ArrayList<Piece> p = board[x][y];
+        int lastPos = p.size()-1;
+	if (p.isEmpty()) {
+	    return -1;
+	}
+	else {
+	    return p.get(lastPos).getColor();
+	}
+    }
+
     
     /*=================================
       boolean isNextTo(int row, int column)
@@ -68,14 +85,23 @@ public class Board{
       returns false otherwise
       =================================*/
 
-    public boolean isRoad(){
-	if(!isEmpty(0,0) && !isEmpty(0,1) && !isEmpty(0,2) && !isEmpty(0,3) && !isEmpty(0,4)){
-	    return true;
+    public boolean hasRowControl(int row, int color){
+	for (int j = 0; j < board.length; j++) {
+	    if (stackOwner(row, j) != color) {
+		return false;  
+	    }
 	}
-	else{
-	    return false;
-	}
-
+	return true;
     }
+
+    public boolean isRoad(int color){
+	for (int i = 0; i < board.length; i++) {
+	    if (hasRowControl(i, color)) {
+		return true;
+	    }
+	}
+	return false;
+    }
+
 }
 
