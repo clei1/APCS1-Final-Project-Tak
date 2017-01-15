@@ -27,4 +27,11 @@ public class Stone extends Piece {
 	return s;
     }
 
+    public static void wallToStone(){
+	if(isWall){
+	    isWall = false;
+	}
+	
+    }
+
 }
