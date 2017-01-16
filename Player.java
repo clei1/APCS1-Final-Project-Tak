@@ -35,14 +35,15 @@ public class Player {
 		    throw new IllegalArgumentException("No more stones to place.");
 		}
 	    }
-	    // else if (type.equals("capstone")) {
-	    // 	if (numCap > 0) {
-	    // 	    b[x][y].add(new Capstone());
-	    // 	}
-	    // 	else {
-	    // 	    // throw exception; no more capstones to place
-	    // 	}
-	    // }
+	    else if (type.equals("capstone")) {
+		if (numCap > 0) {
+	    	    b.board[x][y].add(new Capstone(color, x, y));
+	    	}
+	    	else {
+		    //throw exception; no more capstones to place
+		    throw new IllegalArgumentException("No more capstones to place.");
+	    	}
+	    }
 	    else {
 		// throw exception; not a valid type of piece to place
 		throw new IllegalArgumentException("Not a valid type of piece to place");
