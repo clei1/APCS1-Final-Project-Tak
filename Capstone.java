@@ -15,4 +15,18 @@ public class Capstone extends Piece{
 	    setPos(row, column);
 	}
     }
+    /*~~~~~~~~~~~~~OVERLOADED TOSTRING~~~~~~~~~~~~~*/
+    public String toString(){
+	String s;
+	if (color == 0) {
+	    s = "BLACK CAPSTONE";
+	}
+	else if (color == 1) {
+	    s = "WHITE CAPSTONE";
+	}
+	else {
+	    throw new IllegalArgumentException("Not a valid color.");
+	}
+	return s;
+    }
 }
