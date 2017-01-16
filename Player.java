@@ -10,7 +10,7 @@ public class Player {
     public Player( String n, int c ) {
 	name = n;
 	numStones = 21;
-	numCap = 0;
+	numCap = 1;
 	color = c;
     }
 
