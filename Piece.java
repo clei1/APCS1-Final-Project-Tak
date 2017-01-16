@@ -42,7 +42,7 @@ public class Piece{
     }
 
     /*~~~~~~~~~~~~~MUTATORS~~~~~~~~~~~~~*/
-    public void setPos(int ex, int why){
+    public  void setPos(int ex, int why){
 	x = ex;
 	y = why;
     }
