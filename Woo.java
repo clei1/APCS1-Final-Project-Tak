@@ -17,8 +17,7 @@ public class Woo {
 
 	System.out.println("Choose a piece to place");
 	String pieceType = Keyboard.readString();
-	while(pieceType != "stone" || pieceType != "wall" || pieceType != "capstone"){
-	    System.out.println(pieceType);
+	while(!pieceType.equals("stone") && !pieceType.equals("wall") && !pieceType.equals("capstone")){
 	    System.out.println("That is an invalid input. Please input either 'stone,' 'capstone,' or 'wall'.");
 	    pieceType = Keyboard.readString();
 	}
