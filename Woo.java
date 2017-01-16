@@ -33,7 +33,7 @@ public class Woo {
 		stonePlaced = true;
 	    }
 	    catch (Exception e) {
-		System.out.println("Stone could not be placed. Try again.");
+		System.out.println("Piece could not be placed. Try again.");
 		System.out.print("Location: ");
 		x = Keyboard.readInt();
 		y = Keyboard.readInt();
