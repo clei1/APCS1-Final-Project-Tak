@@ -94,3 +94,12 @@ Grace :: Updated UML diagrams, worked on making Board compilable.
 Brian :: Added Player.java, Stone.java
 Connie :: Worked on driver file.
 ==============================================================
+
+2017-01-15
+--------------------------------------------------------------
+Grace :: Created Capstone class and changed Woo so that players can select what piece they want to add.
+Brian :: 
+Connie :: 
+==============================================================
+
+
