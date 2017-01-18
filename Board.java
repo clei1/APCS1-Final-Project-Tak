@@ -95,12 +95,6 @@ public class Board{
     // public boolean isNextTo(int row, int column){
     // 	return (row == x + 1 || row == x - 1 || row == x) && (column == y+1 || column == y - 1 || column = y);
     // }
-    /*=================================
-      boolean isRow()
-      precond: an instantiated board
-      postcond: returns true if the player has successfully created a row
-      returns false otherwise
-      =================================*/
 
     public boolean hasRowControl(int row, int color){
 	for (int j = 0; j < board.length; j++) {
@@ -111,7 +105,7 @@ public class Board{
 	return true;
     }
 
-   public boolean isTopPieceColor(int col , int row, int color){
+    public boolean isTopPieceColor(int col , int row, int color){
 	//board[col][row] is an ArrayList<Piece>
 	//ArrayList<Piece>.get(last item in the Array) is a Piece
 	//Piece.getColor() returns an integer, white = 1, black = 0
@@ -122,8 +116,26 @@ public class Board{
 
     public boolean isTopPieceWall(int col, int row){
 	int lastPos = board[col][row].size() - 1;
-	return board[col][row].get(lastPos).isWall();
+	return board[col][row].get(lastPos).isWall;
     }
+
+    public boolean isCapstone(int col, int row){
+	int lastPos = board[col][row].size() - 1;
+	if(board[col][row].get(lastPos).toString() == "BLACK CAPSTONE" ||
+	   board[col][row].get(lastPos).toString() == "WHITE CAPSTONE"){
+	    return true;
+	}
+	else{
+	    return false;
+	}
+    }
+
+    /*=================================
+      boolean isRow(int color)
+      precond: an instantiated board
+      postcond: returns true if the player has successfully created a row
+      returns false otherwise
+      =================================*/
     
     public boolean isRoad(int color){
 
@@ -171,7 +183,7 @@ public class Board{
 	    for(int row = 0; row < size; row ++){
 		if(board[firstColPos][row].size() != 0){
 		    if(branchH(firstColPos, row, lastColPos, color)){
-			    return true;
+			return true;
 		    }
 		}
 	    }
@@ -237,3 +249,4 @@ public class Board{
 	       (hasEast(col, row, color)   && branchH(col +1, row, lastRowPos, color)) );    
     }
 }
+
