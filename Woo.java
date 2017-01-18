@@ -2,17 +2,36 @@ import cs1.Keyboard;
 
 public class Woo {
 
-    // /*~~~~~~~~~~~~~INSTANCE VARIABLES~~~~~~~~~~~~~*/
-    // Player player1;
-    // Player player2;
-    // int oneNum; // number of stones player1 has
-    // int oneCap; // number of capstones player1 has
-    // int twoNum;
-    // int twoCap;
-
     /*~~~~~~~~~~~~~METHODS~~~~~~~~~~~~~*/
     public static void playerTurn(Player p, Board b) {
 	System.out.println("Player " + p.name + ", it's now your turn.");
+	System.out.println("1: Place a piece.");
+	System.out.println("2: Move a stack.");
+	System.out.println("3: Display a stack");
+        
+	boolean playerMoved = false;
+	while (!playerMoved) {
+	    System.out.println("Your move: ");
+	    int move = Keyboard.readInt();
+
+	    if (move == 1) {
+		playerPlaceStone( p, b );
+		playerMoved = true;
+	    }
+	    else if (move == 2) {
+		playerMoveStack( p, b );
+		playerMoved = true;
+	    }
+	    else if (move == 3) {
+		playerDisplayStack( p, b );
+	    }
+	    else {
+		System.out.println("Please pick a valid option.");
+	    }
+	}
+    }
+
+    public static void playerPlaceStone(Player p, Board b) {
 	System.out.println("Place a stone, wall, or capstone.");
 
 	System.out.println("Choose a piece to place");
@@ -41,24 +60,86 @@ public class Woo {
 	}
     }
     
-    // public void gameStart() {
-    // 	oneNum = 21;
-    // 	twoNum = 21;
-    // 	oneCap = 1;
-    // 	twoCap = 1;
-    // }
+    public static void playerMoveStack( Player p, Board b ) {
+	System.out.println("Move a stack.");
 
-    // public boolean piecesLeft() {
-    // 	return oneNum == 0 || twoNum == 0;
-    // }
+	System.out.println("Which stack would you like to move?");
+	System.out.print("Location: ");
+	int x = Keyboard.readInt();
+	int y = Keyboard.readInt();
+	System.out.println("Stack Size: ");
+	int z = Keyboard.readInt();
 
-    // public String printBoard() {
-    // 	return "";
-    // }
+	while (z > b.board[x][y].size()) {
+	    System.out.println("Not a valid input.");
+	    System.out.print("Stack Size: ");
+	    z = Keyboard.readInt();
+	}
+       
+	String s = "You can move in these directions: ";
+	if (x != 0) {
+	    s += "up ";
+	}
+	if (y != 4) {
+	    s += "right ";
+	}
+	if (x != 4) {
+	    s += "down ";
+	}
+	if (y != 0) {
+	    s += "left ";
+	}
+	System.out.println(s);
+        System.out.print("Direction: ");
+	String answer = Keyboard.readString();
+	
+	boolean flag = true;
+	while (flag) {
+	    if (answer.equals("up") && x != 0) {
+		p.moveStack(x, y, z, 0, b);
+		flag = false;
+	    }
+	    else if (answer.equals("right") && y != 4) {
+		p.moveStack(x, y, z, 1, b);
+		flag = false;
+	    }
+	    else if (answer.equals("down") && x != 4) {
+		p.moveStack(x, y, z, 2, b);
+		flag = false;
+	    }
+	    else if (answer.equals("left") && y != 0) {
+		p.moveStack(x, y, z, 3, b);
+		flag = false;
+	    }
+	    else {
+		System.out.println("Not a valid input.");
+		System.out.println("Direction: ");
+		answer = Keyboard.readString();
+	    }
+	}
+        
+    }
 
-    // public String vertView(int x, int y) {
-    // 	return "";
-    // }
+    public static void playerDisplayStack( Player p, Board b ) {
+	boolean flag = true;
+	System.out.print("Location: ");
+	int x = Keyboard.readInt();
+	int y = Keyboard.readInt();
+
+	while (flag) {
+	    try {
+		b.displayStack(x, y);
+		flag = false;
+	    }
+	    catch (Exception e) {
+		System.out.println("Not a valid input.");
+		System.out.print("Location: ");
+		x = Keyboard.readInt();
+		y = Keyboard.readInt();
+	    }
+
+	}
+    }
 
     public static void main (String[] args){
 	Board woah = new Board();
