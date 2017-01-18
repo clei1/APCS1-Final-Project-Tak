@@ -67,7 +67,13 @@ public class Board{
 	}
     }
 
-    
+    public void displayStack(int x, int y){
+	System.out.println("TOP");
+	for (int i = board[x][y].size()-1; i >= 0; i-- ) {
+	    System.out.println(board[x][y].get(i));
+	}
+	System.out.println("BOTTOM");
+    }    
     /*=================================
       boolean isNextTo(int row, int column)
       precond: an instantiated board
