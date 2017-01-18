@@ -6,14 +6,8 @@ public class Capstone extends Piece{
     }
 
     /*~~~~~~~~~~~~~METHODS~~~~~~~~~~~~~*/
-    public void flattenWall(Board b, Stone s,int row, int column){
-     	if (b.isEmpty(row, column)){
-     	    setPos(row, column);
-    	}
-    	else{
-    	    s.wallToStone();
-	    setPos(row, column);
-     	}
+    public void flattenWall(Board b, Piece s,int row, int column){
+	s.wallToStone(); //fix to ONLY work with stones that are walls, not any piece
     }
     /*~~~~~~~~~~~~~OVERLOADED TOSTRING~~~~~~~~~~~~~*/
     public String toString(){
