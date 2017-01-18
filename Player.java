@@ -56,4 +56,39 @@ public class Player {
 	}
 	
     }
+
+    public void moveStack( int x, int y, int stackSize, int direction, Board b ) {
+	ArrayList<Piece> stack =  b.board[x][y];
+	int size = stack.size();
+
+	if (b.stackOwner(x,y) != color) {
+	    // throw exception: player cannot move other player's stack
+	}
+	else {
+	    ArrayList<Piece> holder = new ArrayList<Piece>();
+	    for (int i = size-1; i > size-1-stackSize; i--) {
+		holder.add( stack.remove(i) );
+	    }
+	    if (direction == 0) {
+		for (Piece p : holder) {
+		    b.board[x-1][y].add(p);
+		}
+	    }
+	    else if (direction == 1) {
+		for (Piece p : holder) {
+		    b.board[x][y-1].add(p);
+		}
+	    }
+	    else if (direction == 2) {
+		for (Piece p : holder) {
+		    b.board[x+1][y].add(p);
+		}
+	    }
+	    else if (direction == 3) {
+		for (Piece p : holder) {
+		    b.board[x][y+1].add(p);
+		}
+	    }
+	}
+    }
 }
