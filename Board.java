@@ -60,11 +60,11 @@ public class Board{
     public boolean isEmpty(){
     	for(int col = 0; col < size; col ++){
 	    for(int row = 0; row < size; row ++){
-		if(isEmpty(col, row))
-		    return true;
+		if(! isEmpty(col, row))
+		    return false;
 	    }
 	}
-	return false;
+	return true;
     }	
 	
     public boolean isEmpty(int col, int row){

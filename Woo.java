@@ -152,7 +152,7 @@ public class Woo {
 	boolean isPlayerOneTurn = true;
 
 	// main game loop
-	while (!woah.isRoad(0) && !woah.isRoad(1)){
+	while ( (!woah.isRoad(0) && !woah.isRoad(1)) && (player1.numCap + player1.numStones > 0) && (player2.numCap + player2.numStones > 0) ){
 	    if (isPlayerOneTurn) {
 		playerTurn(player1, woah);
 	    }
