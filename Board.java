@@ -57,9 +57,18 @@ public class Board{
       postcond: returns true if there is no piece on the current tile
       returns false if there is a piece on the current tile
       =================================*/
-
-    public boolean isEmpty(int row, int column){
-	return (board[row][column]).size() == 0;
+    public boolean isEmpty(){
+    	for(int col = 0; col < size; col ++){
+	    for(int row = 0; row < size; row ++){
+		if(isEmpty(col, row))
+		    return true;
+	    }
+	}
+	return false;
+    }	
+	
+    public boolean isEmpty(int col, int row){
+	return (board[col][row]).size() == 0;
     }
 
     /*=================================
