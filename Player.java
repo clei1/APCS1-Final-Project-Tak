@@ -22,7 +22,7 @@ public class Player {
 	    if(!(numCap > 0) || (numStones > 0)){
 		//exit, game is over, run roadCheck
 	    }
-            if (b.isEmpty(x,y)) {
+            else if (b.isEmpty(x,y)) {
 	        if(type.equals("capstone")){
 		    if(numCap > 0)
 	    	        b.board[x][y].add(new Capstone(color, x, y));
@@ -46,10 +46,11 @@ public class Player {
 	    }
 	    else
 	        throw new IllegalArgumentException("You cannot place a piece on an occupied tile.");
+	}
 	else
 	    throw new IllegalArgumentException("You cannot place pieces because the board has no empty tiles. You can only move existing pieces.");
-	}
     }
+
     public void moveStack( int x, int y, int stackSize, int direction, Board b ) {
 	ArrayList<Piece> stack =  b.board[x][y];
 	int size = stack.size();
