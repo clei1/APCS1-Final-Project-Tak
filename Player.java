@@ -20,16 +20,17 @@ public class Player {
     public void placePiece(int x, int y, Board b, String type) {
         if (b.isEmpty(x,y)) {
 	    if (type.equals("stone")) {
-		if (numStones > 0) {
+		/*if (numStones > 0) {
 		    if(b.isCapstone(x,y)){
 			throw new IllegalArgumentException("You cannot place a stone on a capstone.");
 		    }
 		    else if(b.isTopPieceWall(x,y)){
 			throw new IllegalArgumentException("You cannot place a stone on a wall.");
 		    }
-		    else{
+		    else{*/
 			b.board[x][y].add(new Stone(color, x, y, false));
-		    }
+		    //shouldn't this be b[x][y].add(new Stone(color, x, y, false)); and for the rest?
+		    //}
 		}
 		else {
 		    // throw exception; no more stones to place
