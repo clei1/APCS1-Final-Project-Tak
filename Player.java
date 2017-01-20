@@ -12,7 +12,7 @@ public class Player {
     public Player( String n, int c, int size ) {
 	name = n;
 	color = c;
-	numStones = 21
+	numStones = 21;
 	numCap = 1;
 	if(size == 8){
 	    numStones = 50;
