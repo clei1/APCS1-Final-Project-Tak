@@ -51,6 +51,15 @@ public class Player {
 	    throw new IllegalArgumentException("You cannot place pieces because the board has no empty tiles. You can only move existing pieces.");
     }
 
+    public boolean hasStones(){
+	return (numStones +  numCap > 0);
+    }
+
+    public boolean hasStacks(Board b){
+	return b.hasStacks(color);
+				      
+    }
+    
     public void moveStack( int x, int y, int stackSize, int direction, Board b ) {
 	ArrayList<Piece> stack =  b.board[x][y];
 	int size = stack.size();

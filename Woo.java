@@ -1,28 +1,43 @@
 import cs1.Keyboard;
 
 public class Woo {
-
+    
     /*~~~~~~~~~~~~~METHODS~~~~~~~~~~~~~*/
     public static void playerTurn(Player p, Board b) {
 	System.out.println("Player " + p.name + ", it's now your turn.");
-	System.out.println("1: Place a piece.");
-	System.out.println("2: Move a stack.");
-	System.out.println("3: Display a stack");
+	int counter = 1;
+	int moveStone = -1;
+	int moveStack = -1;
+	int viewStack = -1;
+
+	if(p.hasStones()){
+	    moveStone = counter;
+	    System.out.println(moveStone + ": Place a piece.");
+	    counter += 1;
+	}
+	if(p.hasStacks(b)){
+	    moveStack = counter;
+	    System.out.println(moveStack + ": Move a stack.");
+	    counter += 1;
+	    viewStack = counter;
+	    System.out.println(viewStack + ": Display a stack");
+	}
         
 	boolean playerMoved = false;
+	
 	while (!playerMoved) {
 	    System.out.println("Your move: ");
 	    int move = Keyboard.readInt();
 
-	    if (move == 1) {
-		playerPlaceStone( p, b );
+	    if (move == moveStone && move != -1) {
+		playerPlaceStone( p, b ); //would it be possible to have playerPlaceStone(p, b) return true or false so we could update playerMoved = playerPlaceStone(p, b);
 		playerMoved = true;
 	    }
-	    else if (move == 2) {
-		playerMoveStack( p, b );
+	    else if (move == moveStack && move != -1) {
+		playerMoveStack( p, b ); //same thing here
 		playerMoved = true;
 	    }
-	    else if (move == 3) {
+	    else if (move == viewStack && move != -1) {
 		playerDisplayStack( p, b );
 	    }
 	    else {
