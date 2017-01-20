@@ -64,6 +64,8 @@ public class Woo {
 	while (!stonePlaced) {
 	    try {
 		p.placePiece(x, y, b, pieceType);
+		System.out.println("does this work?");
+		System.out.println(pieceType);
 		stonePlaced = true;
 	    }
 	    catch (Exception e) {

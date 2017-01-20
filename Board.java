@@ -69,14 +69,14 @@ public class Board{
 	return false;
     }
     
-    public boolean isEmpty(){
+    public boolean isFull(){
     	for(int col = 0; col < size; col ++){
 	    for(int row = 0; row < size; row ++){
-		if(! isEmpty(col, row))
-		    return false;
+		if(isEmpty(col, row))
+		    return true;
 	    }
 	}
-	return true;
+	return false;
     }	
 	
     public boolean isEmpty(int col, int row){

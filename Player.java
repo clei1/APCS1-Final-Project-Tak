@@ -18,38 +18,37 @@ public class Player {
 
     /*~~~~~~~~~~~~~METHODS~~~~~~~~~~~~~*/
     public void placePiece(int x, int y, Board b, String type) {
-	if(b.isEmpty()){
-	    if(!(numCap > 0) || (numStones > 0)){
-		//exit, game is over, run roadCheck
+	/*	
+	System.out.println(b.isFull());
+	System.out.println("true means board is full");
+	if(!b.isFull()){//is board is not full, try placing pieces
+	    System.out.println("BOARD IS NOT FULL");
+	*/
+	if (b.isEmpty(x,y)) {
+	    if(type.equals("capstone")){
+		if(numCap > 0)
+		    b.board[x][y].add(new Capstone(color, x, y));
+		else
+		    throw new IllegalArgumentException("No more capstones to place.");
 	    }
-            else if (b.isEmpty(x,y)) {
-	        if(type.equals("capstone")){
-		    if(numCap > 0)
-	    	        b.board[x][y].add(new Capstone(color, x, y));
-	            else
-		        throw new IllegalArgumentException("No more capstones to place.");
-	        }
-                else if(type.equals("stone")){
-		    if(numStones > 0)
-	                b.board[x][y].add(new Stone(color, x, y, false));
-		    else
-			throw new IllegalArgumentException("No more stones to place.");
-		}
-	        else if (type.equals("wall")){
-		    if(numStones > 0)
-	                b.board[x][y].add(new Stone(color, x, y, true));
-		    else
-			throw new IllegalArgumentException("No more stones to place.");
-		}
-                else
-		    throw new IllegalArgumentException("Not a valid type of piece to place.");
+	    else if(type.equals("stone")){
+		if(numStones > 0)
+		    b.board[x][y].add(new Stone(color, x, y, false));
+		else
+		    throw new IllegalArgumentException("No more stones to place.");
+	    }
+	    else if (type.equals("wall")){
+		if(numStones > 0)
+		    b.board[x][y].add(new Stone(color, x, y, true));
+		else
+		    throw new IllegalArgumentException("No more stones to place.");
 	    }
 	    else
-	        throw new IllegalArgumentException("You cannot place a piece on an occupied tile.");
+		throw new IllegalArgumentException("Not a valid type of piece to place.");
 	}
 	else
-	    throw new IllegalArgumentException("You cannot place pieces because the board has no empty tiles. You can only move existing pieces.");
-    }
+	    throw new IllegalArgumentException("You cannot place a piece on an occupied tile.");
+}
 
     public boolean hasStones(){
 	return (numStones +  numCap > 0);
