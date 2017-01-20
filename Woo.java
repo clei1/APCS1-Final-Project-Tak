@@ -19,6 +19,8 @@ public class Woo {
 	    moveStack = counter;
 	    System.out.println(moveStack + ": Move a stack.");
 	    counter += 1;
+	}
+	if(b.hasStacks()){
 	    viewStack = counter;
 	    System.out.println(viewStack + ": Display a stack");
 	}

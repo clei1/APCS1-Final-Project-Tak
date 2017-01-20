@@ -42,7 +42,7 @@ public class Board{
 		    s += "[EMPTY SPACE] ";
 		}
 		else {
-		    s += "[" + list.get( list.size()-1 ).toString() + "] ";
+		    s += "[" + list.get( list.size() - 1 ).toString() + "] ";
 		}
 	    }
 	    s += "\n";
@@ -58,10 +58,10 @@ public class Board{
       returns false if there is a piece on the current tile
       =================================*/
 
-    public boolean hasStacks( int color){
+    public boolean hasStacks(int color){
 	for(int col = 0; col < size; col ++){
 	    for(int row = 0; row < size; row ++){
-		if(board[col][row].size() > 0 && isTopPieceColor(col, row, color)){
+		if(board[col][row].size() > 0 && stackOwner(col, row) == color){
 		    return true;
 		}
 	    }
@@ -69,16 +69,17 @@ public class Board{
 	return false;
     }
     
-    /* public boolean isFull(){
-    	for(int col = 0; col < size; col ++){
+    public boolean hasStacks(){
+	for(int col = 0; col < size; col ++){
 	    for(int row = 0; row < size; row ++){
-		if(isEmpty(col, row))
+		if(board[col][row].size() > 0){
 		    return true;
+		}
 	    }
 	}
 	return false;
-	}*/	
-	
+    }
+    
     public boolean isEmpty(int col, int row){
 	return (board[col][row]).size() == 0;
     }
@@ -106,33 +107,9 @@ public class Board{
 	}
 	System.out.println("BOTTOM");
     }    
-    /*=================================
-      boolean isNextTo(int row, int column)
-      precond: an instantiated board
-      postcond: returns true if the inputted tile is directly adjacent to the tile the player is currently on
-      returns false otherwise
-      =================================*/
-
-    // public boolean isNextTo(int row, int column){
-    // 	return (row == x + 1 || row == x - 1 || row == x) && (column == y+1 || column == y - 1 || column = y);
-    // }
-
-    public boolean hasRowControl(int row, int color){
-	for (int j = 0; j < board.length; j++) {
-	    if (stackOwner(row, j) != color) {
-		return false;  
-	    }
-	}
-	return true;
-    }
 
     public boolean isTopPieceColor(int col , int row, int color){
-	//board[col][row] is an ArrayList<Piece>
-	//ArrayList<Piece>.get(last item in the Array) is a Piece
-	//Piece.getColor() returns an integer, white = 1, black = 0
-	int lastPos = board[col][row].size() - 1;
-	int topPieceColor  = board[col][row].get(lastPos).getColor();
-	return topPieceColor == color;
+	return stackOwner(col, row) == color;
     }
 
     public boolean isTopPieceWall(int col, int row){

@@ -75,9 +75,8 @@ public class Player {
 
     public boolean hasStacks(Board b){
 	return b.hasStacks(color);
-				      
     }
-    
+
     public void moveStack( int x, int y, int stackSize, int direction, Board b ) {
 	ArrayList<Piece> stack =  b.board[x][y];
 	int size = stack.size();
