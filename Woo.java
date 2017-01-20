@@ -170,12 +170,12 @@ public class Woo {
 	if(p1Color == 1){
 	    p2Color = 0;
 	}
-	System.out.println("Board size is: (input a number between 3 and 8 inclusive)");
+	System.out.println("Board size is: (input a number between 3 and 8 inclusive)"); //needs a try, catch system
 	int size = Keyboard.readInt();
 	
 	Board woah = new Board(size);
-	Player player1 = new Player(p1Name, p1Color); // player white
-	Player player2 = new Player(p2Name, p2Color); // player black
+	Player player1 = new Player(p1Name, p1Color, size); // player white
+	Player player2 = new Player(p2Name, p2Color, size); // player black
 	System.out.println(woah);
 	boolean isPlayerOneTurn = true;
 

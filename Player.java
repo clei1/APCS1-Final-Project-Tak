@@ -9,11 +9,30 @@ public class Player {
     int color;
 
     /*~~~~~~~~~~~~~CONSTRUCTOR~~~~~~~~~~~~~*/
-    public Player( String n, int c ) {
+    public Player( String n, int c, int size ) {
 	name = n;
-	numStones = 21;
-	numCap = 1;
 	color = c;
+	numStones = 21
+	numCap = 1;
+	if(size == 8){
+	    numStones = 50;
+	    numCap = 2;
+	}
+	if(size == 7){
+	    numStones = 40;
+	    numCap = 2;
+	}
+	if(size == 6){
+	    numStones = 30;
+	}
+	if(size == 4){
+	    numStones = 15;
+	    numCap = 0;
+	}
+	if(size == 3){
+	    numStones = 10;
+	    numCap = 0;
+	}
     }
 
     /*~~~~~~~~~~~~~METHODS~~~~~~~~~~~~~*/
