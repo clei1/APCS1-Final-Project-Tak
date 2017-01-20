@@ -69,7 +69,7 @@ public class Board{
 	return false;
     }
     
-    public boolean isFull(){
+    /* public boolean isFull(){
     	for(int col = 0; col < size; col ++){
 	    for(int row = 0; row < size; row ++){
 		if(isEmpty(col, row))
@@ -77,7 +77,7 @@ public class Board{
 	    }
 	}
 	return false;
-    }	
+	}*/	
 	
     public boolean isEmpty(int col, int row){
 	return (board[col][row]).size() == 0;
