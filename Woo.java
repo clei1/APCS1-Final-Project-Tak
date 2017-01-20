@@ -136,10 +136,7 @@ public class Woo {
 	}
 	    
     }
-	
-        
-
-
+       
     public static void playerDisplayStack( Player p, Board b ) {
 	boolean flag = true;
 	System.out.print("Location: ");
@@ -162,9 +159,23 @@ public class Woo {
     }
 
     public static void main (String[] args){
-	Board woah = new Board();
-	Player player1 = new Player("Alpha", 1); // player white
-	Player player2 = new Player("Bravo", 0); // player black
+	System.out.println("To play a beautiful game or to not play at all?");
+	System.out.println("Player 1 name is:");
+	String p1Name = Keyboard.readString();
+	System.out.println("Player 2 name is:");
+	String p2Name = Keyboard.readString();
+	System.out.println(p1Name + "is 0: black or 1: white");
+	int p1Color = Keyboard.readInt();
+	int p2Color = 1;
+	if(p1Color == 1){
+	    p2Color = 0;
+	}
+	System.out.println("Board size is: (input a number between 3 and 8 inclusive)");
+	int size = Keyboard.readInt();
+	
+	Board woah = new Board(size);
+	Player player1 = new Player(p1Name, p1Color); // player white
+	Player player2 = new Player(p2Name, p2Color); // player black
 	System.out.println(woah);
 	boolean isPlayerOneTurn = true;
 
@@ -176,6 +187,7 @@ public class Woo {
 	    else {
 		playerTurn(player2, woah);
 	    }
+	    
 	    System.out.println(woah);
 	    isPlayerOneTurn = !isPlayerOneTurn;
 	}

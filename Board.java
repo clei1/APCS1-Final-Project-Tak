@@ -12,16 +12,16 @@ public class Board{
     int[][] checkedTile;
 
     /*~~~~~~~~~~~~~DEFAULT CONSTRUCTOR~~~~~~~~~~~~~*/
-    public Board(){
-	board = new ArrayList[5][5];
-	for(int row = 0; row < 5; row++){
-	    for(int column = 0; column < 5; column++){
+    public Board(int s){
+	board = new ArrayList[s][s];
+	for(int row = 0; row < s; row++){
+	    for(int column = 0; column < s; column++){
 		board[row][column] = new ArrayList<Piece>();
 	    }
 	}
 	firstRowPos = 0;
 	firstColPos = 0;
-	size = 5;
+	size = s;
 	lastRowPos = size -1;
 	lastColPos = size - 1;    
     }
