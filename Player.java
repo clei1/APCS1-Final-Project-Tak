@@ -77,7 +77,7 @@ public class Player {
 	return b.hasStacks(color);
     }
 
-    public void moveStack( int x, int y, int stackSize, int direction, Board b ) {
+    public void moveStack( int x, int y, int stackSize, String direction, Board b ) {
 	ArrayList<Piece> stack =  b.board[x][y];
 	int size = stack.size();
 
@@ -89,37 +89,24 @@ public class Player {
 	    for (int i = size-1; i > size-1-stackSize; i--) {
 		holder.add( stack.remove(i) );
 	    }
-	    if (direction == 0) {
+	    if (direction.equals("up")) {
 		for (Piece p : holder) {
 		    b.board[x-1][y].add(p);
 		}
-		if(b.isTopPieceWall(x-1,y) && b.isCapstone(x-1,y)){
-		    ((Capstone)((b.board[x-1][y]).get((b.board[x-1][y]).size() -1))).flattenWall(b,( (b.board[x-1][y]).get( (b.board[x-1][y]).size() -2) ), x-1,y);
-		}
-		
 	    }
-	    else if (direction == 1) {
+	    else if (direction.equals("left")) {
 		for (Piece p : holder) {
 		    b.board[x][y-1].add(p);
 		}
-		if(b.isTopPieceWall(x,y-1) && b.isCapstone(x,y-1)){
-		    ((Capstone)((b.board[x][y-1]).get((b.board[x][y-1]).size() -1))).flattenWall(b,((b.board[x][y-1]).get((b.board[x][y-1]).size() -2)), x,y-1);
-		}
 	    }
-	    else if (direction == 2) {
+	    else if (direction.equals("down")) {
 		for (Piece p : holder) {
 		    b.board[x+1][y].add(p);
 		}
-		if(b.isTopPieceWall(x+1,y) && b.isCapstone(x+1,y)){
-		    ((Capstone)((b.board[x+1][y]).get((b.board[x+1][y]).size() -1))).flattenWall(b,((b.board[x+1][y]).get((b.board[x+1][y]).size() -2)), x+1,y);
-		}
 	    }
-	    else if (direction == 3) {
+	    else if (direction.equals("right")) {
 		for (Piece p : holder) {
 		    b.board[x][y+1].add(p);
-		}
-		if(b.isTopPieceWall(x,y+1) && b.isCapstone(x,y+1)){
-		    ((Capstone)((b.board[x][y+1]).get((b.board[x][y+1]).size() -1))).flattenWall(b,((b.board[x][y+1]).get((b.board[x][y+1]).size() -2)), x,y+1);
 		}
 	    }
 	}
