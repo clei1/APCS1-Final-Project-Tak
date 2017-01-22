@@ -55,6 +55,10 @@ public class Woo {
 	    System.out.println("That is an invalid input. Please input either 'stone,' 'capstone,' or 'wall'.");
 	    pieceType = Keyboard.readString();
 	}
+	while(p.numCap == 0 && pieceType.equals("capstone")){
+	    System.out.println("You don't have any capstones left. Please input either wall or stone");
+	    pieceType = Keyboard.readString();
+	}
 	
 	System.out.print("Location: ");
 	int x = Keyboard.readInt();
