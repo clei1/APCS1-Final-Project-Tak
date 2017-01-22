@@ -45,20 +45,26 @@ public class Player {
 	*/
 	if (b.isEmpty(x,y)) {
 	    if(type.equals("capstone")){
-		if(numCap > 0)
+		if(numCap > 0) {
 		    b.board[x][y].add(new Capstone(color, x, y));
+		    numCap--;
+		}
 		else
 		    throw new IllegalArgumentException("No more capstones to place.");
 	    }
 	    else if(type.equals("stone")){
-		if(numStones > 0)
+		if(numStones > 0) {
 		    b.board[x][y].add(new Stone(color, x, y, false));
+		    numStones--;
+		}
 		else
 		    throw new IllegalArgumentException("No more stones to place.");
 	    }
 	    else if (type.equals("wall")){
-		if(numStones > 0)
+		if(numStones > 0) {
 		    b.board[x][y].add(new Stone(color, x, y, true));
+		    numStones;
+		}
 		else
 		    throw new IllegalArgumentException("No more stones to place.");
 	    }
