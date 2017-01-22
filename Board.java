@@ -143,6 +143,7 @@ public class Board{
     //returns FALSE if the top piece of a stack is not a wall
     public boolean isTopPieceWall(int col, int row){
 	int lastPos = board[col][row].size() - 1;
+	//System.out.println(board[col][row].get(lastPos));
 	return board[col][row].get(lastPos).isWall;
     }
 
@@ -272,7 +273,7 @@ public class Board{
 	return ( ((row - 1) >= firstRowPos)        &&
 		 (checkedTile[col][row - 1] == 0)  &&		 
 		 (isOccupied(col, row - 1))        &&		 
-		 (isTopPieceNotWall(col, row - 1)) &&
+		 (!isTopPieceWall(col, row - 1)) &&
 		 (isTopPieceColor(col, row - 1, color)) );
     }
 
@@ -280,7 +281,7 @@ public class Board{
 	return ( ((col - 1) >= firstColPos)        &&
 		 (checkedTile[col - 1][row] == 0)  &&
 		 (isOccupied(col - 1, row))        &&
-		 (isTopPieceNotWall(col - 1, row)) &&
+		 (!isTopPieceWall(col - 1, row)) &&
 		 (isTopPieceColor(col - 1, row, color)) );
     }
 
@@ -288,7 +289,7 @@ public class Board{
 	return ( ((col + 1) < size)                &&
 		 (checkedTile[col + 1][row] == 0)  &&
 		 (isOccupied(col + 1, row))        &&
-		 (isTopPieceNotWall(col + 1, row)) &&
+		 (!isTopPieceWall(col + 1, row)) &&
 		 (isTopPieceColor(col + 1, row, color)) );   
     }
 	
