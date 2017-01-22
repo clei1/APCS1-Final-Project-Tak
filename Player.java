@@ -63,7 +63,7 @@ public class Player {
 	    else if (type.equals("wall")){
 		if(numStones > 0) {
 		    b.board[x][y].add(new Stone(color, x, y, true));
-		    numStones;
+		    numStones--;
 		}
 		else
 		    throw new IllegalArgumentException("No more stones to place.");

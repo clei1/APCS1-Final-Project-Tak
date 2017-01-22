@@ -220,12 +220,13 @@ public class Board{
 	    }
 	}
 
-	System.out.println("firstCol: " + firstCol);
+	/*	System.out.println("firstCol: " + firstCol);
 	System.out.println("lastCol: " + lastCol);
 	System.out.println("firstCol && lastCol: " + (firstCol && lastCol));
 	System.out.println("firstRow: " + firstRow);
 	System.out.println("lastRow: " + lastRow);
 	System.out.println("firstRow && lastRow: " + (firstRow && lastRow));
+	*/
 
 	return ((firstCol && lastCol) ||
 		(firstRow && lastRow));
@@ -319,7 +320,7 @@ public class Board{
 	    //input TRUE if there is a possible road based on the first column and last column or first row and last row
 	    //input FALSE if there is no possible road at all
 	    checkedTile = new int[size][size];
-	    printChecked();
+	    //printChecked();
 	    
 	    for(int row = 0; row < size; row ++){//iterates though the rows in the first column
 		if(isOccupied(firstColPos, row)){
