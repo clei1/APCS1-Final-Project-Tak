@@ -81,34 +81,41 @@ public class Player {
 	ArrayList<Piece> stack =  b.board[x][y];
 	int size = stack.size();
 
-	if (b.stackOwner(x,y) != color) {
-	    // throw exception: player cannot move other player's stack
+	ArrayList<Piece> holder = new ArrayList<Piece>();
+	for (int i = size-1; i > size-1-stackSize; i--) {
+	    holder.add( stack.remove(i) );
 	}
-	else {
-	    ArrayList<Piece> holder = new ArrayList<Piece>();
-	    for (int i = size-1; i > size-1-stackSize; i--) {
-		holder.add( stack.remove(i) );
+	if (direction.equals("up")) {
+	    for (Piece p : holder) {
+		b.board[x-1][y].add(p);
 	    }
-	    if (direction.equals("up")) {
-		for (Piece p : holder) {
-		    b.board[x-1][y].add(p);
-		}
-	    }
-	    else if (direction.equals("left")) {
-		for (Piece p : holder) {
-		    b.board[x][y-1].add(p);
-		}
-	    }
-	    else if (direction.equals("down")) {
-		for (Piece p : holder) {
-		    b.board[x+1][y].add(p);
-		}
-	    }
-	    else if (direction.equals("right")) {
-		for (Piece p : holder) {
-		    b.board[x][y+1].add(p);
-		}
-	    }
+	    x--;
 	}
+	else if (direction.equals("left")) {
+	    for (Piece p : holder) {
+		b.board[x][y-1].add(p);
+	    }
+	    y--;
+	}
+	else if (direction.equals("down")) {
+	    for (Piece p : holder) {
+		b.board[x+1][y].add(p);
+	    }
+	    x++;
+	}
+	else if (direction.equals("right")) {
+	    for (Piece p : holder) {
+		b.board[x][y+1].add(p);
+	    }
+	    y++;
+	}
+
+	stack = b.board[x][y];
+	size = stack.size();
+
+	if ( (stack.get(size-1) instanceof Capstone) && (stackSize == 1) ) {
+	    ((Capstone)(stack.get(size-1))).flattenWall(stack.get(size-2));
+	}
+
     }
 }
