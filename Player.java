@@ -114,7 +114,10 @@ public class Player {
 	size = stack.size();
 
 	if ( (stack.get(size-1) instanceof Capstone) && (stackSize == 1) ) {
-	    ((Capstone)(stack.get(size-1))).flattenWall(stack.get(size-2));
+	    try {
+		((Capstone)(stack.get(size-1))).flattenWall((Stone)stack.get(size-2));
+	    }
+	    catch (Exception e) {}
 	}
 
     }

@@ -55,9 +55,4 @@ public class Piece{
 
     //some of the methods in the UML will not be applicable here anymore because we're implementing a Player.java class
     //discuss and update the UML based on these changes
-    public void wallToStone(){
-	if(isWall){
-	    isWall = false;
-	}
-    }
 }

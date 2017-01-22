@@ -6,7 +6,7 @@ public class Capstone extends Piece{
     }
 
     /*~~~~~~~~~~~~~METHODS~~~~~~~~~~~~~*/
-    public void flattenWall(Piece s){
+    public void flattenWall(Stone s){
 	s.wallToStone(); //fix to ONLY work with stones that are walls, not any piece
     }
     /*~~~~~~~~~~~~~OVERLOADED TOSTRING~~~~~~~~~~~~~*/
