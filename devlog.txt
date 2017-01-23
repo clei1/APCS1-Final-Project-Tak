@@ -16,6 +16,8 @@ UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Because of the myriad of strategies players can use to create roads, we are not 100% certain if the isRoad() method will handle all cases of road creation. We have, however, tested and debugged various cases, and will only be able to see bugs if a player runs into one as the game progresses.
 
+Stacks are able to move on top of wall and capstones, which should not be possible.
+
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 We learned that strategy games are very hard to implement, but testing and debugging helped a lot. We also learned that having clear descriptive comments and variable names will help us not get lost in the future.
@@ -78,28 +80,28 @@ Connie :: Worked on driver file.
 2017-01-15
 --------------------------------------------------------------
 Grace :: Created Capstone class and changed Woo so that players can select what piece they want to add.
-Brian :: 
+Brian :: Worked on moveStack, displayStack
 Connie :: Worked on driver file
 ==============================================================
 
 2017-01-18
 --------------------------------------------------------------
 Grace :: Fixed the flattenWall method and added some exception handling with placing pieces.
-Brian :: 
+Brian :: Allowed for moving stacks one tile over.
 Connie :: Wrote isRoad and all corresponding functions needed such as isCapstone, isTopPieceColor, etc
 ==============================================================
 
 2017-01-20
 --------------------------------------------------------------
 Grace :: 
-Brian :: 
+Brian :: Allowed for spreading stacks (moving stacks over multiple tiles)
 Connie :: Changed player options to reflect choices possible
 ==============================================================
 
 2017-01-21
 --------------------------------------------------------------
 Grace :: 
-Brian :: 
+Brian :: Testing, debugging.
 Connie :: Refined isRoad, debugged isWall
 ==============================================================
 
@@ -107,7 +109,7 @@ Connie :: Refined isRoad, debugged isWall
 --------------------------------------------------------------
 Grace :: Added some exception handling and attempted to fix isRoad() to function
 without walls interfering.
-Brian :: 
+Brian :: Testing, debugging.
 Connie :: Rewrote isRoad, corrected algorithm, added a exception handling, fixed isWall
 ==============================================================
 
