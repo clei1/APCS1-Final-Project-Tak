@@ -233,6 +233,10 @@ public class Woo {
 	System.out.println("1: White");
 
 	int p1Color = Keyboard.readInt();
+	while(p1Color != 0 && p1Color != 1){
+	    System.out.println("Black or white? Black or white? Choose 0 or 1. Choose 1 or 0");
+	    p1Color = Keyboard.readInt();
+	}
 	int p2Color = 0;
 	boolean isPlayerOneTurn = true;
 	
