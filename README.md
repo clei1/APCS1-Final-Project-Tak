@@ -1,4 +1,4 @@
-##Tak, A Beautiful Game
+##*Tak, A Beautiful Game*
 
 ##Launch Instructions
 In order to run this Tak game, run Woo.java in the terminal.
@@ -9,7 +9,9 @@ Official rules can be found at: <http://cheapass.com/free-games/tak/>
 
 ##Meet the Pieces
 Stone: a stone is your standard piece in Tak. it is counted as a part of roads, and can be moved anywhere, except on capstones and walls.
+
 Wall: a wall is a standing stone. It is used to block roads from being formed. It can be moved anywhere, except on other walls and capstones. In addition, it can be flattened by capstones, essentially turning it back into a regular stone.
+
 Capstone: a capstone is a special piece that can be moved anywhere, except on other capstones. It has the power to flatten walls back into stones.
 
 ##Placing a Piece
