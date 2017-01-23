@@ -246,7 +246,7 @@ public class Woo {
 			   "The entire game, not just the fiddling about with stones. The point is not to play as tight as you can. The point is to be bold. To be dangerous. Be elegant. -Bredon",
 			   "A well-played game of tak reveals the moving of a mind. -Bredon",
 			   "Why would I want to win anything other than a beautiful game? - Bredon",
-			   "I call it Bredon’s defense, but that’s what I call any maneuver when I get out of a tight corner by being uncommonly clever. -Bredon"};
+			   "I call it Bredon's defense, but that's what I call any maneuver when I get out of a tight corner by being uncommonly clever. -Bredon"};
 	System.out.println(quotes[(int)(Math.random() * 5)]);
 
 	String[] titles = {"Edema Ruh", "Master Arcanist", "Fae", "Master Artificer", "E'lir", "Re'lar",
