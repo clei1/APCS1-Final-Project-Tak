@@ -79,14 +79,28 @@ Connie :: Worked on driver file.
 --------------------------------------------------------------
 Grace :: Created Capstone class and changed Woo so that players can select what piece they want to add.
 Brian :: 
-Connie :: 
+Connie :: Worked on driver file
 ==============================================================
 
 2017-01-18
 --------------------------------------------------------------
 Grace :: Fixed the flattenWall method and added some exception handling with placing pieces.
 Brian :: 
-Connie :: 
+Connie :: Wrote isRoad and all corresponding functions needed such as isCapstone, isTopPieceColor, etc
+==============================================================
+
+2017-01-20
+--------------------------------------------------------------
+Grace :: 
+Brian :: 
+Connie :: Changed player options to reflect choices possible
+==============================================================
+
+2017-01-21
+--------------------------------------------------------------
+Grace :: 
+Brian :: 
+Connie :: Refined isRoad, debugged isWall
 ==============================================================
 
 2017-01-22
@@ -94,7 +108,7 @@ Connie ::
 Grace :: Added some exception handling and attempted to fix isRoad() to function
 without walls interfering.
 Brian :: 
-Connie :: 
+Connie :: Rewrote isRoad, corrected algorithm, added a exception handling, fixed isWall
 ==============================================================
 
 
