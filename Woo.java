@@ -190,7 +190,7 @@ public class Woo {
 		y--;
 	    }
 	   
-	    counter -= z - 1;
+	    counter = z - 1;
 	}
 	  
 	return true;
