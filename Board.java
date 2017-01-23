@@ -4,16 +4,9 @@ public class Board{
     
     ArrayList<Piece>[][] board; //the board is represented by a 2D array
 
-    int firstRowPos; //the first row is always 0
-    int firstColPos; //the first column is always 0
-
-    int lastRowPos;  //the last row is one less than the size
-    int lastColPos;  //the last column is one less than the size
-
     int size;        //size is the lenght and width of the board, they are equal because it is a square
 
     int[][] checkedTile; //this is the 2D array of the board, but 1 if tile is check, 0 if it hasn't been
-
 
     
     //Default constructor
@@ -25,11 +18,7 @@ public class Board{
 		board[row][col] = new ArrayList<Piece>(); //sets each array to contain an ArrayList
 	    }
 	}
-	firstRowPos = 0; //sets firstRowPos to 0
-	firstColPos = 0; //sets firstColPos to 0
 	size = s; //sets size to player defined size 
-	lastRowPos = size -1; //sets lastRowPos to largest row possible
-	lastColPos = size - 1;//sets lastColPos to largest column possible
     }
 
 
@@ -175,59 +164,46 @@ public class Board{
     //returns TRUE if there is a possible road based on the first column and last column or first row and last row
     //returns FALSE if there is no possible road at all
     public boolean isRoadPossible(int color){
-	//checks if there are the input colored non-wall stones in the first column
-	boolean firstCol = false; //sets base to be false, ensuring that this will only be set true if the top of any stack in the first column is the same color as input and isn't a wall
-	for(int row = 0; row < size && !firstCol; row ++){ //iterates from the top of the column to the bottom, exits when already true
-	    if(isOccupied(firstColPos, row)  &&
-	       //input TRUE if the tiles in the first column(left most column) have stones on them
-	       //input FALSE if the tiles in the first column(left most column) are empty
 
-	       isTopPieceNotWall(firstColPos, row) &&
-	       //input TRUE if the non empty tile does not have a wall
-	       //input FALSE if the non empty tile has a wall
-	       
-	       isTopPieceColor(firstColPos, row, color)){
-	       //input TRUE if the non empty tile is controlled by the color
-	       //input FALSE if the non empty tile is not controlled by the color
+	boolean firstCol = false;
+	for(int x = 0; x < size && !firstCol; x ++){
+	    if(isOccupied(x, 0) &&
+	       isTopPieceNotWall(x, 0) &&
+	       isTopPieceColor(x, 0, color))
 		firstCol = true;
-	    }
 	}
+	
 
 	boolean lastCol = false;
-	//checks if there are the input colored non-wall stones in the last column
-	for(int row = 0; row < size && !lastCol; row ++){ //iterates from the top of the column to the bottom, exits when already true
-	    if(isOccupied(lastColPos, row)        &&
-	       isTopPieceNotWall(lastColPos, row) &&  
-	       isTopPieceColor(lastColPos, row, color)){	
-		lastCol = true;
+	if(firstCol){
+	    for(int x = 0; x < size && !lastCol; x ++){ 
+		if(isOccupied(x, size - 1)        &&
+		   isTopPieceNotWall(x, size - 1) &&  
+		   isTopPieceColor(x, size - 1, color)){	
+		    lastCol = true;
+		}
 	    }
 	}
 	
 	boolean firstRow = false;
-	for(int col = 0; col < size && !firstRow; col ++){
-	    if(isOccupied(col, firstRowPos)        &&
-	       isTopPieceNotWall(col, firstRowPos) &&  
-	       isTopPieceColor(col, firstRowPos, color)){
+	for(int x = 0; x < size && !firstRow; x ++){
+	    if(isOccupied(0, x)        &&
+	       isTopPieceNotWall(0, x) &&  
+	       isTopPieceColor(0, x, color)){
 		firstRow = true;
 	    }	    
 	}
-	
+
 	boolean lastRow = false;
-	for(int col = 0; col < size && !lastRow; col ++){
-	    if(isOccupied(col, lastRowPos)        &&
-	       isTopPieceNotWall(col, lastRowPos) &&
-	       isTopPieceColor(col, lastRowPos, color)){
-		lastRow = true;
+	if(firstRow){
+	    for(int x = 0; x < size && !lastRow; x ++){
+		if(isOccupied(size - 1, x)        &&
+		   isTopPieceNotWall(size - 1, x) &&
+		   isTopPieceColor(size - 1, x, color)){
+		    lastRow = true;
+		}
 	    }
 	}
-
-	/*	System.out.println("firstCol: " + firstCol);
-	System.out.println("lastCol: " + lastCol);
-	System.out.println("firstCol && lastCol: " + (firstCol && lastCol));
-	System.out.println("firstRow: " + firstRow);
-	System.out.println("lastRow: " + lastRow);
-	System.out.println("firstRow && lastRow: " + (firstRow && lastRow));
-	*/
 
 	return ((firstCol && lastCol) ||
 		(firstRow && lastRow));
@@ -241,75 +217,60 @@ public class Board{
 	for(int col = 0; col < size; col ++){
 	    System.out.println("");
 	    for(int row = 0; row < size; row ++){
-		System.out.println(checkedTile[col][row]);		
+		System.out.print(checkedTile[col][row]);		
 	    }
 	}
     }
     
     public boolean hasSouth(int col, int row, int color){
-	return ( ((row + 1) < size)                &&
-		 //input TRUE if the southern tile is within board limits
-		 //checks if there is a tile under inputted tile
-		 //ex. [3][4], checks [3][5]
-
-		 (checkedTile[col][row + 1] == 0)  &&
-		 //input TRUE if the southern tile has not been checked
-		 //input FALSE if the southern tile has been checked
-		 
-		 (isOccupied(col, row + 1))  &&
-		 //input TRUE if the southern tile is not empty
-		 //input FALSE if the southern tile is empty
-		 
-		 (isTopPieceNotWall(col, row + 1))  &&
-		 //input TRUE if the southern tile is not a wall
-		 //input FALSE if the southern tile is  a wall
-
-		 (isTopPieceColor(col, row + 1, color)));
-	         //returns TRUE if the inputted color owns the stack at tile
-	         //returns FALSE if the inputted color does not own the stack at tile
+	return ( ((col + 1) < size) &&
+		 (checkedTile[col + 1][row] != 1) &&
+		 (isOccupied(col + 1, row)) &&
+		 (isTopPieceNotWall(col + 1, row)) &&
+		 (isTopPieceColor(col + 1, row, color)));
     }
 
     public boolean hasNorth(int col, int row, int color){
-	return ( ((row - 1) >= firstRowPos)        &&
-		 (checkedTile[col][row - 1] == 0)  &&		 
-		 (isOccupied(col, row - 1))        &&		 
-		 (!isTopPieceWall(col, row - 1)) &&
-		 (isTopPieceColor(col, row - 1, color)) );
-    }
-
-    public boolean hasWest(int col, int row, int color){
-	return ( ((col - 1) >= firstColPos)        &&
-		 (checkedTile[col - 1][row] == 0)  &&
-		 (isOccupied(col - 1, row))        &&
+	return ( ((col - 1) >= 0)        &&
+		 (checkedTile[col - 1][row] != 1)  &&		 
+		 (isOccupied(col - 1, row))        &&		 
 		 (!isTopPieceWall(col - 1, row)) &&
 		 (isTopPieceColor(col - 1, row, color)) );
     }
 
+    public boolean hasWest(int col, int row, int color){
+	return ( ((row - 1) >= 0)        &&
+		 (checkedTile[col][row - 1] != 1)  &&
+		 (isOccupied(col, row - 1))        &&
+		 (!isTopPieceWall(col, row - 1)) &&
+		 (isTopPieceColor(col , row - 1, color)) );
+    }
+
     public boolean hasEast(int col, int row, int color){
-	return ( ((col + 1) < size)                &&
-		 (checkedTile[col + 1][row] == 0)  &&
-		 (isOccupied(col + 1, row))        &&
-		 (!isTopPieceWall(col + 1, row)) &&
-		 (isTopPieceColor(col + 1, row, color)) );   
+	return ( ((row + 1) < size)                &&
+		 (checkedTile[col][row + 1] != 1)  &&
+		 (isOccupied(col, row + 1))        &&
+		 (!isTopPieceWall(col, row + 1)) &&
+		 (isTopPieceColor(col, row + 1, color)) );   
     }
 	
     
-    public boolean branchH(int col, int row, int lastColPos, int color){
+    public boolean branchH(int col, int row, int color){
 	checkedTile[col][row] = 1;
-	return((col == lastColPos) ||
-	       (hasSouth(col, row, color)  && branchH(col, row + 1, lastColPos, color)) ||
-	       (hasNorth(col, row, color)  && branchH(col, row - 1, lastColPos, color)) || 
-	       (hasWest(col, row, color)   && branchH(col - 1, row, lastColPos, color)) ||
-	       (hasEast(col, row, color)   && branchH(col + 1, row, lastColPos, color)) );    
+	return((row == size - 1) ||
+	       (hasSouth(col, row, color)  && branchH(col, row + 1, color)) ||
+	       (hasNorth(col, row, color)  && branchH(col, row - 1, color)) || 
+	       (hasWest(col, row, color)   && branchH(col - 1, row, color)) ||
+	       (hasEast(col, row, color)   && branchH(col + 1, row, color)) );    
     }
     
-    public boolean branchV(int col, int row, int lastRowPos, int color){
+    public boolean branchV(int col, int row, int color){
 	checkedTile[col][row] = 1;
-	return((row == lastRowPos) ||
-	       (hasSouth(col, row, color)  && branchH(col, row + 1, lastRowPos, color)) ||
-	       (hasNorth(col, row, color)  && branchH(col, row - 1, lastRowPos, color)) || 
-	       (hasWest(col, row, color)   && branchH(col - 1, row, lastRowPos, color)) ||
-	       (hasEast(col, row, color)   && branchH(col + 1, row, lastRowPos, color)) );    
+	return((col == size - 1) ||
+	       (hasSouth(col, row, color)  && branchV(col, row + 1, color)) ||
+	       (hasNorth(col, row, color)  && branchV(col, row - 1, color)) || 
+	       (hasWest(col, row, color)   && branchV(col - 1, row, color)) ||
+	       (hasEast(col, row, color)   && branchV(col + 1, row, color)) );    
     }
     
 
@@ -323,20 +284,20 @@ public class Board{
 	    checkedTile = new int[size][size];
 	    //printChecked();
 	    
-	    for(int row = 0; row < size; row ++){//iterates though the rows in the first column
-		if(isOccupied(firstColPos, row)){
+	    for(int x = 0; x < size; x ++){//iterates though the rows in the first column
+		if(isOccupied(0, x) && isTopPieceColor(0, x, color)){
 		    //returns TRUE if the tile at position is not empty
 		    //returns FALSE if the tile is empty
-		    if(branchH(firstColPos, row, lastColPos, color))
+		    if(branchV(0, x, color))
 			return true;
 		}
 	    }
 	    
-	    for(int col = 0; col < size; col ++){//iterates through the columns in the first row
-		if(isOccupied(col, firstRowPos)){
+	    for(int x = 0; x < size; x ++){//iterates through the columns in the first row
+		if(isOccupied(x, 0) && isTopPieceColor(x, 0, color)){
 		    //returns TRUE if the tile at position is not empty
 		    //returns FALSE if the tile is empty
-		    if(branchV(col, firstRowPos, lastRowPos, color))
+		    if(branchH(x, 0, color))
 			return true;
 		}
 	    }
