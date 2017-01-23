@@ -1,10 +1,7 @@
 public class Stone extends Piece {
 
-    boolean isWall;
-
     public Stone(int color, int x, int y, boolean b){
-	super(color, x, y);
-	isWall = b;
+	super(color, x, y, b);
     }
 
     public String toString() {

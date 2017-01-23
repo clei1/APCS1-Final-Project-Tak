@@ -17,13 +17,13 @@ public class Piece{
     }
 
     /*~~~~~~~~~~~~~OVERLOADED CONSTRUCTOR~~~~~~~~~~~~~*/
-    public Piece(int colores, int ex, int why){
+    public Piece(int colores, int ex, int why, boolean wall){
 	color = colores;
 	x = ex;
 	y = why;
 	//will stackPos be determined by the Board? How will it be determined? For now, I set it as 0
 	stackPos = 0;
-	isWall = false;
+	isWall = wall;
     }
     
     /*~~~~~~~~~~~~~ACCESSORS~~~~~~~~~~~~~*/

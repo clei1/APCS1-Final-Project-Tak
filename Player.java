@@ -46,7 +46,7 @@ public class Player {
 	if (b.isEmpty(x,y)) {
 	    if(type.equals("capstone")){
 		if(numCap > 0) {
-		    b.board[x][y].add(new Capstone(color, x, y));
+		    b.board[x][y].add(new Capstone(color, x, y, false));
 		    numCap--;
 		}
 		else

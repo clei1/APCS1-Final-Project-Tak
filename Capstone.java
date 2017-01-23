@@ -1,8 +1,8 @@
 public class Capstone extends Piece{
 
     /*~~~~~~~~~~~~~OVERLOADED CONSTRUCTOR~~~~~~~~~~~~~*/
-    public Capstone(int color, int x, int y){
-	super(color,x,y);
+    public Capstone(int color, int x, int y, boolean wall){
+	super(color,x,y, wall);
     }
 
     /*~~~~~~~~~~~~~METHODS~~~~~~~~~~~~~*/
