@@ -6,47 +6,27 @@ pd 1
 ---------------------
 Tak Game
 
-Suggested usage: 
-* Replace all fields, angle brackets included, with specified info.
-  eg, pd <pd#> --> pd 3
-* Delete these instructions once all teammates understand usage.
-
-devlog--
-Use keyboard shortcut to jump to end,
- replicate entry template,
- modify appropriately.
-
-zone of reflection--
-Flesh out each category whenever necessary, appropriate.
- Need not be fully filled in until end of project,
- but best done as you go along.
-
-
 /////////// Zone of Reflection \\\\\\\\\\\
 ------------------------------------------
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-wow we so BOSS bc...
+The moveStacks() and isRoad() methods were two of the biggest obstacles in the creation of this game. However, after hours of debugging and continued moral support through Skype, we were able to consider (hopefully) all the cases that a player has when moving a stack or creating a road, and returning the proper boolean for that outcome.
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-blah blah pesky bug...
-maybe some of these will move into the Obs.Ovrcm section...
+Because of the myriad of strategies players can use to create roads, we are not 100% certain if the isRoad() method will handle all cases of road creation. We have, however, tested and debugged various cases, and will only be able to see bugs if a player runs into one as the game progresses.
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-wow! oo!...
+We learned that strategy games are very hard to implement, but testing and debugging helped a lot. We also learned that having clear descriptive comments and variable names will help us not get lost in the future.
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-we changed ___ to ___ bc...
+Since we were able to make our board more versatile, we changed a hardcoded 5 by 5 board to take on sizes from 3 by 3 to 8 by 8 because we realized we would have time to code for bigger and smaller board sizes.
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-tales of wisdom gained...
-||||||||||||||||||||||||||||||||||||||||||
-
-
+We learned that a GROUP project isn't successful without completely clear communication among all group members.
 
  ______   ______   __   __   __       ______   _______     
 /_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\    
@@ -105,6 +85,14 @@ Connie ::
 2017-01-18
 --------------------------------------------------------------
 Grace :: Fixed the flattenWall method and added some exception handling with placing pieces.
+Brian :: 
+Connie :: 
+==============================================================
+
+2017-01-22
+--------------------------------------------------------------
+Grace :: Added some exception handling and attempted to fix isRoad() to function
+without walls interfering.
 Brian :: 
 Connie :: 
 ==============================================================
