@@ -241,16 +241,27 @@ public class Woo {
 
     /*~~~~~~~~~~~~~MAIN METHOD~~~~~~~~~~~~~*/
     public static void main (String[] args){
-	System.out.println("TAK: A BEAUTIFUL GAME");
-	String[]quotes = ["To play a beautiful game or to not play at all?", "The entire game, not just the fiddling about with stones. The point is not to play as tight as you can. The point is to be bold. To be dangerous. Be elegant.", "A well-played game of tak reveals the moving of a mind.", "Why would I want to win anything other than a beautiful game?", "I call it Bredon’s defense, but that’s what I call any maneuver when I get out of a tight corner by being uncommonly clever."];
+	System.out.println("TAK: A BEAUTIFUL GAME \nbased on the KingKillerChronicles by Patrick Rothfuss\n(literally the greatest series ever written)");
+	String[] quotes = {"To play a beautiful game or to not play at all?",
+			   "The entire game, not just the fiddling about with stones. The point is not to play as tight as you can. The point is to be bold. To be dangerous. Be elegant. -Bredon",
+			   "A well-played game of tak reveals the moving of a mind. -Bredon",
+			   "Why would I want to win anything other than a beautiful game? - Bredon",
+			   "I call it Bredon’s defense, but that’s what I call any maneuver when I get out of a tight corner by being uncommonly clever. -Bredon"};
 	System.out.println(quotes[(int)(Math.random() * 5)]);
-	    
-	// NAME SELECTION
-	System.out.print("Player 1's name is: ");
-	String p1Name = Keyboard.readString();
 
-	System.out.print("Player 2's name is: ");
-	String p2Name = Keyboard.readString();
+	String[] titles = {"Edema Ruh", "Master Arcanist", "Fae", "Master Artificer", "E'lir", "Re'lar",
+			   "University Chancellor", "Master Alchemist", "Master Arithmatician", "Master Linguist",
+			   "Master Namer", "Master Physicker", "Master Rhetorician", "Master Sympathist", "Scriv",
+			   "Giller", "Baron", "Maer"};
+	
+	// NAME SELECTION
+	String p1Name = titles[(int)(Math.random() * titles.length)];
+	System.out.print(p1Name + "'s name is: ");
+	p1Name += " " + Keyboard.readString();
+
+	String p2Name = titles[(int)(Math.random() * titles.length)];
+	System.out.print(p2Name + "'s name is: ");
+        p2Name += " " + Keyboard.readString();
 
 	// COLOR SELECTION
 	System.out.println("Which shade of gray are you feeling, " + p1Name + "?");
