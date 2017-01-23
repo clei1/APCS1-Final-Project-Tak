@@ -3,6 +3,12 @@ import cs1.Keyboard;
 public class Woo {
     
     /*~~~~~~~~~~~~~METHODS~~~~~~~~~~~~~*/
+    
+    /*
+      void playerTurn(player p, Board b)
+      precondition: board and player have been instatiated
+      postcondition: the player is allowed to place a piece, move a stack, or view a stack
+    */
     public static void playerTurn(Player p, Board b) {
 	System.out.println(p.name + ", it's now your turn.");
 	int counter = 1;
@@ -46,6 +52,12 @@ public class Woo {
 	}
     }
 
+    /*
+      boolean playerPlaceStone(Player p, Board b)
+      precondition: instantiated board and player
+      postcondition: returns true when the player successfully places a piece
+    */
+
     public static boolean playerPlaceStone(Player p, Board b) {
 	System.out.println("Place a stone, wall, or capstone.");
 
@@ -80,6 +92,11 @@ public class Woo {
 
 	return true;
     }
+    /*
+      boolean playerMoveStack(Player p, Board b)
+      precondition: instantiated player and board
+      postcondition: returns true when the player successfully moves a stack
+    */
     
     public static boolean playerMoveStack( Player p, Board b ) {
 	System.out.println("Move a stack.");
@@ -195,6 +212,11 @@ public class Woo {
 	  
 	return true;
     }
+    /*
+      void playerDisplayStack(Player p, Board b)
+      precondition: instantiated player and board
+      postcondition: shows the player a stack if the player inputs acceptable coordinates
+    */
     
     public static void playerDisplayStack( Player p, Board b ) {
 	boolean flag = true;
@@ -217,6 +239,7 @@ public class Woo {
 	}
     }
 
+    /*~~~~~~~~~~~~~MAIN METHOD~~~~~~~~~~~~~*/
     public static void main (String[] args){
 	System.out.println("To play a beautiful game or to not play at all?");
 
@@ -232,9 +255,10 @@ public class Woo {
 	System.out.println("0: Black");
 	System.out.println("1: White");
 
+	//If the user doesn't select 0 or 1 during color selection phase
 	int p1Color = Keyboard.readInt();
 	while(p1Color != 0 && p1Color != 1){
-	    System.out.println("Black or white? Black or white? Choose 0 or 1. Choose 1 or 0");
+	    System.out.println("Black or white? Choose 0 or 1.");
 	    p1Color = Keyboard.readInt();
 	}
 	int p2Color = 0;

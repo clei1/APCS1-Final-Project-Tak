@@ -6,8 +6,13 @@ public class Capstone extends Piece{
     }
 
     /*~~~~~~~~~~~~~METHODS~~~~~~~~~~~~~*/
+    /*
+      void flattenWall(Stone s)
+      precondition: none
+      postcondition: if the Stone under the Capstone is a wall, it will get flattened and will turn into a regular Stone
+    */
     public void flattenWall(Stone s){
-	s.wallToStone(); //fix to ONLY work with stones that are walls, not any piece
+	s.wallToStone(); //invokes wallToStone() method on the Stone
     }
     /*~~~~~~~~~~~~~OVERLOADED TOSTRING~~~~~~~~~~~~~*/
     public String toString(){
