@@ -238,24 +238,30 @@ public class Keyboard
       return value;
    }
 
-   //-----------------------------------------------------------------
-   //  Returns an integer read from standard input.
-   //-----------------------------------------------------------------
-   public static int readInt() 
-   {
-      String token = getNextToken();
-      int value;
-      try 
-      {
-         value = Integer.parseInt (token);
-      } 
-      catch (Exception exception) 
-      {
-         error ("Error reading int data, MIN_VALUE value returned.");
-         value = Integer.MIN_VALUE;
-      }
-      return value;
-   }
+    //-----------------------------------------------------------------
+    //  Returns an integer read from standard input.
+    //-----------------------------------------------------------------
+    public static int readInt() 
+    {
+	String token = getNextToken();
+	int value;
+	try 
+	    {
+		value = Integer.parseInt (token);
+	    } 
+	catch (Exception exception) 
+	    {
+
+		String[] messages ={"Grr...",
+				    "Hey! That's not an integer.",
+				    "According to my calculations, that is NOT an integer.",
+				    "I've never seen that integer before.",
+				    "Read carefully."};
+		error (messages[(int)(Math.random()*5)]);
+		value = readInt();
+	    }
+	return value;
+    }
 
    //-----------------------------------------------------------------
    //  Returns a long integer read from standard input.
