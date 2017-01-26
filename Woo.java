@@ -1,6 +1,11 @@
+import java.io.*;
+import java.util.*;
 import cs1.Keyboard;
 
 public class Woo {
+
+    static int totalTurns=0;
+    static String stats="";
     
     /*~~~~~~~~~~~~~METHODS~~~~~~~~~~~~~*/
     
@@ -81,6 +86,7 @@ public class Woo {
 	    try {
 		p.placePiece(x, y, b, pieceType);
 		stonePlaced = true;
+		totalTurns+=1;
 	    }
 	    catch (Exception e) {
 		System.out.println("Piece could not be placed. Try again.");
@@ -209,7 +215,8 @@ public class Woo {
 	   
 	    counter = z - 1;
 	}
-	  
+
+	totalTurns+=1;
 	return true;
     }
     /*
@@ -286,7 +293,7 @@ public class Woo {
 	String[] titles = {"Edema Ruh", "Master Arcanist", "Fae", "Master Artificer", "E'lir", "Re'lar",
 			   "University Chancellor", "Master Alchemist", "Master Arithmatician", "Master Linguist",
 			   "Master Namer", "Master Physicker", "Master Rhetorician", "Master Sympathist", "Scriv",
-			   "Giller", "Baron", "Maer"};
+			   "Giller", "Baron", "Maer"};	    
 	
 	// NAME SELECTION
 	String p1Name = titles[(int)(Math.random() * titles.length)];
@@ -346,10 +353,32 @@ public class Woo {
 	// DISPLAY WHOM WON
 	if (woah.isRoad(0)) {
 	    System.out.println("\nBlack won!");
+	    	
+	    try{
+		PrintWriter outputStream = new PrintWriter("stats.txt");
+		outputStream.print("woazaaa");
+		outputStream.close();
+		System.out.println("Game stats have been generated! Check them out at stats.txt in this directory.");
+	    }
+	    catch(Exception e){
+		System.out.println("Stats generation failed :/ So here's the printed in terminal version!");
+	    }
 	}
 	else {
 	    System.out.println("\nWhite won!");
+	    	
+	    try{
+		PrintWriter outputStream = new PrintWriter("stats.txt");
+		stats+= totalTurns+"\n";
+		outputStream.print(stats);
+		outputStream.close();
+		System.out.println("Game stats have been generated! Check them out at stats.txt in this directory.");
+	    }
+	    catch(Exception e){
+		System.out.println("Stats generation failed");
+	    }
 	}
+	
     }
 
 
