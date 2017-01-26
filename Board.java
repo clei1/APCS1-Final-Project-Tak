@@ -27,10 +27,10 @@ public class Board{
 	    for (int j = 0; j < i.length; j++) {
 		ArrayList list = i[j];
 		if (list.size() == 0) {
-		    s += "[EMPTY SPACE] ";
+		    s += "[_]\t";
 		}
 		else {
-		    s += "[" + list.get( list.size() - 1 ).toString() + "] ";
+		    s += "[" + list.get( list.size() - 1 ).toString() + "]\t";
 		}
 	    }
 	    s += "\n";
