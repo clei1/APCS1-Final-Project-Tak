@@ -6,6 +6,15 @@ public class Board{
     ArrayList<Piece>[][] board; //the board is represented by a 2D array
     int size;//size is the length and width of the board, they are equal because it is a square
     int[][] checked;
+    int numBlackStacks;
+    int numWhiteStacks;
+    int numBlackStones;
+    int numBlackWalls;
+    int numBlackCapstones;
+    int numWhiteStones;
+    int numWhiteWalls;
+    int numWhiteCapstones;
+    int numRoads;
 
      /*~~~~~~~~~~~~~DEFAULT CONSTRUCTOR~~~~~~~~~~~~~*/
     //Input: Takes a player inputted number between 3 to 8, defining the size
