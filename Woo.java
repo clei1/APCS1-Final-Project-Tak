@@ -8,7 +8,8 @@ public class Woo{
     Player player1, player2;
     int totalTurns=0;
     static String stats="";
-    
+
+    //basically asks user player whether he or she wants to read instructions
     public void gameIntro(){
 	System.out.println("\n====================================================================\n");
 	System.out.println("TAK: A BEAUTIFUL GAME \nbased on the KingKillerChronicles by Patrick Rothfuss\n(literally the greatest series ever written)");
@@ -61,6 +62,7 @@ public class Woo{
 	System.out.println("====================================================================\n");
     }
 
+    //handle player name creation, color selection, board creation
     public void creation(){
 	final String[] TITLES = {"Edema Ruh", "Master Arcanist", "Fae", "Master Artificer", "E'lir", "Re'lar",
 			   "University Chancellor", "Master Alchemist", "Master Arithmatician", "Master Linguist",
@@ -107,25 +109,50 @@ public class Woo{
 	woah = new Board(size);
 	totalTurns = 0;
     }
-    
+
+    /* 
+       boolean winRoad()
+       precondition: instantiated board
+       postcondition: returns true if there is a board, false otherwise (main game continuation tester)
+    */
     public boolean winRoad(){
 	return (woah.isRoad(0) || woah.isRoad(1));
     }
 
+    /*
+      boolean winFullBoard()
+      precondition: instantiated board
+      postcondition: returns true if the board is filled on every tile, false otherwise
+    */
     public boolean winFullBoard(){
 	return (woah.isBoardFull());
     }
 
+    /*
+      boolean winNoPiecesLeft()
+      precondition: instantiated players and board
+      postcondition: returns true if at least one player has no more pieces left, false otherwise
+    */
     public boolean winNoPiecesLeft(){
 	return (player1.noPiecesLeft() || player2.noPiecesLeft());
     }
 
+    /*
+      boolean win()
+      precondition: instantiated player pieces and board
+      postcondition: returns true if at least one of the win conditions is met, false otherwise
+    */
     public boolean win(){
 	return(winRoad() ||
 	       winFullBoard() ||
 	       winNoPiecesLeft());
     }
 
+    /*
+      String getWinner()
+      precondition: instantiated players and board and pieces
+      postcondition: returns the String name of the player who won
+    */
     public String getWinner(){
 	int p1Color = player1.getColor();
 	if(woah.isRoad(0) && woah.isRoad(1)){
@@ -151,7 +178,12 @@ public class Woo{
 	}
 	return "";
     }
-    
+
+    /*
+      void gameEnd()
+      precondition:instantiated players board pieces
+      postcondition: returns nothing, but ends the while loop and generates stats
+    */
     public void gameEnd(){
 	System.out.println(getWinner());
 	System.out.println("Would you like statistics of how your game went? Type in yes or no.");
@@ -163,6 +195,7 @@ public class Woo{
 	    System.out.println("Sorry, I do not speak your language. Please say something I can understand. *Sad face*");
 	    answer = Keyboard.readString();
 	}
+	//generation of stats!! new material 
 	if(answer.equals("yes") || answer.equals("y")){
 	    try{
 		PrintWriter outputStream = new PrintWriter("stats.txt");
@@ -189,6 +222,11 @@ public class Woo{
 	}
     }
 
+    /*
+      void gameTurn()
+      precondition: instantiated players, pieces, board
+      postcondition: ends if a win condition is met
+    */
     public void gameTurn(){
 	while (!win()){
 	    System.out.println(woah);
