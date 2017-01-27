@@ -261,10 +261,10 @@ public class Player {
 	}
 
 	while((!woah.playerCap(x, y, color)) &&
-	      (! (woah.stoneMoveStack(x, y) ||
-		  woah.stoneMoveStack(x, y) ||
-		  woah.stoneMoveStack(x, y) ||
-		  woah.stoneMoveStack(x, y)))){
+	      (! (woah.stoneMoveStack(x - 1, y) ||
+		  woah.stoneMoveStack(x + 1, y) ||
+		  woah.stoneMoveStack(x, y - 1) ||
+		  woah.stoneMoveStack(x, y + 1)))){
 	    System.out.println("This stack is surrounded by immovable parts. Since your stack does not have capstone at the top, you cannot move. If you had a capstone, you could break down the walls surrounding you.");
 	    x = Keyboard.readInt();
 	    y = Keyboard.readInt();
@@ -287,10 +287,6 @@ public class Player {
 		}
 	    }
 	}
-	
-	//=======================================================================================================================================================================
-	
-
 	
 	//=======================================================================================================================================================================
 	
@@ -365,82 +361,19 @@ public class Player {
 	    direction = "down";
 	
 	//=======================================================================================================================================================================
+
 	int stackSize = woah.getStackSize(x, y);
 	ArrayList<Piece> stack = woah.getStack(x, y, stackSize);
 	int startX = x;
 	int startY = y;
-	while(stackSize > 0){
-	    int leftB = 0;
-	    //if the stack is controlled by the player's capstone
-	    if(stack.get(stack.size() - 1) instanceof Capstone){
-		//while the next position is not the edge of the board or occupied by a capstone
-		while(woah.capMovingStack(updateX(x, direction), updateY(y, direction))){
-		    //if the next piece is not a wall
-		    if(woah.isTopPieceNotWall(updateX(x, direction), updateY(y, direction))){
-			//if your current position is your starting position
-			if(startX == x && startY == y){
-			    System.out.println("How many stones would you like to leave behind?");
-			    leftB = Keyboard.readInt();
-			    while(leftB < 0 || leftB >= stackSize){
-				System.out.println("You can't leave negative stones or all stones behind!");
-				leftB = Keyboard.readInt();
-			    }
-			    //subtract that many stones from your stack
-			    stackSize -= leftB;
-			    /*case capstone:
-		b.board[x][y].add(new Capstone(color, x, y, false));
-		break;*/	
-			    stack = addStack(woah, x, y, stack, leftB);
-			}
-			//if your current position is not your starting position
-			else{
-			    System.out.println("How many stones would you like to leave behind? Since you have moved already, you must leave at least one stone behind!");
-			    leftB = Keyboard.readInt();
-			    while((leftB < 1 || leftB > stackSize)){
-				System.out.println("You can't leave negative stones or no stones behind!");
-				leftB = Keyboard.readInt();
-			    }
-			    //subtract that many stones from your stack
-			    stackSize -= leftB;
-			    stack = addStack(woah, x, y, stack, leftB);
-			}
-			//since you have left pieces behind and your stack has been updated, you move one place in that direction
-			x = updateX(x, direction);
-			y = updateY(y, direction);
-		    }
-		    //if the next piece is a wall
-		    else{
-			System.out.println("The next piece is a wall! Only your capstone can flatten it meaning you have to leave the rest of your stack at your current position.");
-			System.out.println("1: Flatten wall");
-			System.out.println("2: Stay at current position");
-			int flat = Keyboard.readInt();
-			while( flat != 1 || flat != 2){
-			    System.out.println("A wall makes Tak great, but a road will connect our worlds! Flatten or leave it standing?");
-			    flat = Keyboard.readInt();
-			}
-			if(flat == 1){
-			    stack = addStack(woah, x, y, stack, stackSize - 2);
-			    stackSize = 1;
-			    x = updateX(x, direction);
-			    y = updateY(y, direction);
-			    woah.flattenWall(x, y);
-			    addStack(woah, x, y, stack);
-			    return;
-			}
-			else {
-			    addStack(woah, x, y, stack);
-			    return;
-			}
-		    }
-		}
-		System.out.println("You can't move anymore! Your stack is deposited at your current position!");
-		addStack(woah, x, y, stack);
-		return;
-	    }
-	    //if the stack is not controlled by the player's capstone
-	    else{
-		//while the next position is not the edge of the board or occupied by a capstone
-		while(woah.stoneMovingStack(updateX(x, direction), updateY(y, direction))){
+        
+	int leftB = 0;
+	//if the stack is controlled by the player's capstone
+	if(stack.get(stack.size() - 1) instanceof Capstone){
+	    //while the next position is not the edge of the board or occupied by a capstone
+	    while(woah.capMoveStack(updateX(x, direction), updateY(y, direction)) && stackSize > 0){
+		//if the next piece is not a wall
+		if(woah.isTopPieceNotWall(updateX(x, direction), updateY(y, direction))){
 		    //if your current position is your starting position
 		    if(startX == x && startY == y){
 			System.out.println("How many stones would you like to leave behind?");
@@ -451,13 +384,16 @@ public class Player {
 			}
 			//subtract that many stones from your stack
 			stackSize -= leftB;
+			/*case capstone:
+			  b.board[x][y].add(new Capstone(color, x, y, false));
+			  break;*/	
 			stack = addStack(woah, x, y, stack, leftB);
 		    }
 		    //if your current position is not your starting position
 		    else{
 			System.out.println("How many stones would you like to leave behind? Since you have moved already, you must leave at least one stone behind!");
 			leftB = Keyboard.readInt();
-			while(leftB < 1 || leftB > stackSize){
+			while((leftB < 1 || leftB > stackSize)){
 			    System.out.println("You can't leave negative stones or no stones behind!");
 			    leftB = Keyboard.readInt();
 			}
@@ -469,10 +405,74 @@ public class Player {
 		    x = updateX(x, direction);
 		    y = updateY(y, direction);
 		}
-		System.out.println("You can't move anymore! Your stack is deposited at your current position!");
-		addStack(woah, x, y, stack);
-		return;
+		//if the next piece is a wall
+		else{
+		    System.out.println("The next piece is a wall! Only your capstone can flatten it meaning you have to leave the rest of your stack at your current position.");
+		    System.out.println("1: Flatten wall");
+		    System.out.println("2: Stay at current position");
+		    int flat = Keyboard.readInt();
+		    while( flat != 1 || flat != 2){
+			System.out.println("A wall makes Tak great, but a road will connect our worlds! Flatten or leave it standing?");
+			flat = Keyboard.readInt();
+		    }
+		    if(flat == 1){
+			stack = addStack(woah, x, y, stack, stackSize - 2);
+			stackSize = 1;
+			x = updateX(x, direction);
+			y = updateY(y, direction);
+			woah.flattenWall(x, y);
+			addStack(woah, x, y, stack);
+			return;
+		    }
+		    else {
+			addStack(woah, x, y, stack);
+			return;
+		    }
+		}
 	    }
+	    System.out.println("You can't move anymore! Your stack is deposited at your current position!");
+	    addStack(woah, x, y, stack);
+	    return;
+	}
+	//if the stack is not controlled by the player's capstone
+	else{
+	    //while the next position is not the edge of the board or occupied by a capstone
+	    while(woah.stoneMoveStack(updateX(x, direction), updateY(y, direction)) && stackSize > 0){
+		//if your current position is your starting position
+		if(startX == x && startY == y){
+		    System.out.println("How many stones would you like to leave behind?");
+		    leftB = Keyboard.readInt();
+		    while(leftB < 0 || leftB >= stackSize){
+			System.out.println("You can't leave negative stones or all stones behind!");
+			leftB = Keyboard.readInt();
+		    }
+		    //subtract that many stones from your stack
+		    stackSize -= leftB;
+		    stack = addStack(woah, x, y, stack, leftB);
+		}
+		//if your current position is not your starting position
+		else{
+		    /*System.out.println("How many stones would you like to leave behind? Since you have moved already, you must leave at least one stone behind!");
+		    leftB = Keyboard.readInt();
+		    System.out.println("Stack size:" + stackSize);
+		    System.out.println("Input:" + leftB);
+		    System.out.println("first boolean:" + (leftB < 1));
+		    System.out.println("second boolean: " + ( leftB > stackSize));*/
+		    while(leftB < 1 || leftB > stackSize){
+			System.out.println("You can't leave negative stones or no stones behind!");
+			leftB = Keyboard.readInt();
+		    }
+		    //subtract that many stones from your stack
+		    stackSize -= leftB;
+		    stack = addStack(woah, x, y, stack, leftB);
+		}
+		//since you have left pieces behind and your stack has been updated, you move one place in that direction
+		x = updateX(x, direction);
+		y = updateY(y, direction);
+	    }
+	    System.out.println("You can't move anymore! Your stack is deposited at your current position!");
+	    addStack(woah, x, y, stack);
+	    return;
 	}
     }
 

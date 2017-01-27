@@ -215,15 +215,6 @@ public class Board{
 		isTopPieceNotCapstone(x, y)));
     }
 
-    public boolean capMovingStack(int x, int y){
-	return((x >= 0) &&
-	       (x <= (size - 1)) &&
-	       (y <= (size - 1)) &&
-	       (y >= 0) &&
-	       (isEmpty(x, y) || 
-		isTopPieceNotCapstone(x, y)));
-    }
-    
     public boolean stoneMoveStack(int x, int y){
 	return((x >= 0) &&
 	       (x <= (size - 1)) &&
@@ -233,16 +224,7 @@ public class Board{
 		(isTopPieceNotCapstone(x, y) &&
 		 isTopPieceNotWall(x, y))));
     }
-
-    public boolean stoneMovingStack(int x, int y){
-	return((x >= 0) &&
-	       (x <= (size - 1)) &&
-	       (y <= (size - 1)) &&
-	       (y >= 0) &&
-	       (isEmpty(x, y) ||
-		(isTopPieceNotCapstone(x, y) &&
-		 isTopPieceNotWall(x, y))));
-    }
+    
     /*
     public String printChecked(){
 	String temp = "[";
