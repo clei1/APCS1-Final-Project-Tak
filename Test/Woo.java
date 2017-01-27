@@ -6,7 +6,8 @@ public class Woo{
 
     Board woah;
     Player player1, player2;
-    int totalTurns;
+    int totalTurns=0;
+    static String stats="";
     
     public void gameIntro(){
 	System.out.println("\n====================================================================\n");
@@ -164,10 +165,26 @@ public class Woo{
 	    answer = Keyboard.readString();
 	}
 	if(answer.equals("yes") || answer.equals("y")){
-	    System.out.println("STATS");
-	    System.out.println("Total Number of Turns:" + totalTurns);
-	    System.out.println("Number of White's Turns:");
-	    System.out.println("Number of Black's Turns:");
+	    try{
+		PrintWriter outputStream = new PrintWriter("stats.txt");
+		woah.calculateNumStacks();
+		stats+= "Turns Played: " + totalTurns+"\n";
+		/*stats+= "Black Stones Placed: " + woah.numBlackStones + "\n";
+		stats+= "Black Walls Placed: " + woah.numBlackWalls + "\n";
+		stats+= "Black Capstones Placed: " + woah.numBlackCapstones + "\n";
+		stats+= "Black Stacks Controlled At End: " + woah.numBlackStacks + "\n";
+		stats+= "White Stones Placed: " + woah.numWhiteStones + "\n";
+		stats+= "White Walls Placed: " + woah.numWhiteWalls + "\n";
+		stats+= "White Capstones Placed: " + woah.numWhiteCapstones + "\n";
+		stats+= "White Stacks Controlled At End: " + woah.numWhiteStacks + "\n";*/
+		stats+= "Size of the board: " + woah.size + "\n";
+		outputStream.print(stats);
+		outputStream.close();
+		System.out.println("Game stats have been generated! Check them out at stats.txt in this directory.");
+	    }
+	    catch(Exception e){
+		System.out.println("Stats generation failed. But we can print them in the terminal:\n"+stats);
+	    }
 	    
 	}
     }

@@ -6,6 +6,15 @@ public class Board{
     ArrayList<Piece>[][] board; //the board is represented by a 2D array
     int size;//size is the length and width of the board, they are equal because it is a square
     int[][] checked;
+    int numBlackStacks;
+    int numWhiteStacks;
+    int numBlackStones;
+    int numBlackWalls;
+    int numBlackCapstones;
+    int numWhiteStones;
+    int numWhiteWalls;
+    int numWhiteCapstones;
+    int numTurns;
 
      /*~~~~~~~~~~~~~DEFAULT CONSTRUCTOR~~~~~~~~~~~~~*/
     //Input: Takes a player inputted number between 3 to 8, defining the size
@@ -30,7 +39,7 @@ public class Board{
 		    s += "[_]\t";
 		}
 		else {
-		    s += "[" + list.get( list.size() - 1 ).toString() + "] ";
+		    s += "[" + list.get( list.size() - 1 ).toString() + "]\t";
 		}
 	    }
 	    s += "\n";
@@ -110,6 +119,11 @@ public class Board{
 	return (!isEmpty(x, y));
     }
 
+    /*
+      boolean isBoardFull()
+      precondition: an instantiated board
+      postcondition: returns true if every tile on the board has a piece on it, false otherwise
+    */
     public boolean isBoardFull(){
 	for(int x = 0; x < size; x ++){
 	    for(int y = 0; y < size; y ++){
@@ -173,16 +187,23 @@ public class Board{
 	return (board[col][row].get(board[col][row].size() - 1) instanceof Capstone);
     }
 
+    /*
+      boolean isTopPieceNotCapstone(int col, int row)
+      precondition: instantiated board with pieces on it
+      postcondition: returns true if the top piece of a stack is not a capstone, false otherwise
+    */
     public boolean isTopPieceNotCapstone(int col, int row){
 	return (!isCapstone(col, row));
     }
+    
+    /*
+      boolean playerCap(int x, int y, int color)
+      precondition: instantiated board with pieces on it
+      postcondition: returns true if the piece at the specified tile is the player's capstone, false otherwise
+    */
 
     public boolean playerCap(int x, int y, int color){
 	return (isCapstone(x, y) && board[x][y].get( board[x][y].size() - 1).getColor() == color);
-    }
-
-    public int getSize(){
-	return size;
     }
     
     public boolean capMoveStack(int x, int y){
@@ -377,7 +398,7 @@ public class Board{
     }
     
     public int getStackSize(int x, int y){
-	return (board[x][y].length - 1);
+    return (board[x][y].length - 1);
     }
     */
 
@@ -386,10 +407,34 @@ public class Board{
 	board[x][y].get(lastPos).setStone();
     }
     
+    public void calculateNumStacks(){
+	for (int i = 0; i < size; i++) {
+	    for (int j = 0; j < size; j++) {
+		int w = stackOwner(i,j);
+		if (w == 0) {
+		    numBlackStacks++;
+		}
+		else if (w == 1) {
+		    numWhiteStacks++;
+		}
+	    }
+	}
+    }
+
+    /*~~~~~~~~~~~~~ACCESSORS~~~~~~~~~~~~~*/
     /*
-    public static boolean road(int[][] checked, int x, int y){
-	if(checked[x][y] == 2){
-	    return true;
+      int getSize()
+      precondition: an instantiated board
+      postcondition: returns size variable of board
+    */
+    public int getSize(){
+	return size;
+    }
+    
+    /*
+      public static boolean road(int[][] checked, int x, int y){
+      if(checked[x][y] == 2){
+      return true;
 	}
 
 	if(checked[x][y] <= 0){
