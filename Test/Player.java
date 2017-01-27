@@ -81,7 +81,10 @@ public class Player {
 		y = Keyboard.readInt();
 	    }
 	}
-	woah.board[x][y].add(new Stone(color, x, y, false));	
+	int tempC = 0;
+	if(color == 0)
+	    tempC = 1;
+	woah.board[x][y].add(new Stone(tempC, x, y, false));	
     }
     
     public void turn(Board woah){
@@ -203,7 +206,6 @@ public class Player {
 	if(move == stone)
 	    woah.board[x][y].add(new Stone(color, x, y, false));
 	if(move == wall)
-
 	    woah.board[x][y].add(new Stone(color, x, y, true));
 	if(move == capstone)
 	    woah.board[x][y].add(new Capstone(color, x, y, false));
@@ -215,6 +217,7 @@ public class Player {
 	System.out.println("Which stack would you like to move? Location:");
 	int x = Keyboard.readInt();
 	int y = Keyboard.readInt();
+	
 	while((x < 0) ||
 	      (x >= woah.getSize()) ||
 	      (y < 0) ||
@@ -257,7 +260,11 @@ public class Player {
 	    }
 	}
 
-	while((!woah.playerCap(x, y, color)) || (!woah.stoneMoveStack(x, y))){
+	while((!woah.playerCap(x, y, color)) &&
+	      (! (woah.stoneMoveStack(x, y) ||
+		  woah.stoneMoveStack(x, y) ||
+		  woah.stoneMoveStack(x, y) ||
+		  woah.stoneMoveStack(x, y)))){
 	    System.out.println("This stack is surrounded by immovable parts. Since your stack does not have capstone at the top, you cannot move. If you had a capstone, you could break down the walls surrounding you.");
 	    x = Keyboard.readInt();
 	    y = Keyboard.readInt();
@@ -283,8 +290,7 @@ public class Player {
 	
 	//=======================================================================================================================================================================
 	
-	int stackSize = woah.getStackSize(x, y);
-	ArrayList<Piece> stack = woah.getStack(x, y, stackSize);
+
 	
 	//=======================================================================================================================================================================
 	
@@ -295,7 +301,8 @@ public class Player {
 	int right = -1;
 	int up = -1;
 	int down = -1;
-	if(woah.playerCap(x, y, color)){
+	if(woah.isCapstone(x, y)){
+	    System.out.println("made it past here");
 	    if(woah.capMoveStack(x - 1, y)){
 		System.out.println(counter + ": up");
 		up = counter;
@@ -358,7 +365,8 @@ public class Player {
 	    direction = "down";
 	
 	//=======================================================================================================================================================================
-	
+	int stackSize = woah.getStackSize(x, y);
+	ArrayList<Piece> stack = woah.getStack(x, y, stackSize);
 	int startX = x;
 	int startY = y;
 	while(stackSize > 0){

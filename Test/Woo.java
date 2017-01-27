@@ -1,4 +1,6 @@
 import cs1.Keyboard;
+import java.io.*;
+import java.util.*;
 
 public class Woo{
 
@@ -171,8 +173,8 @@ public class Woo{
     }
 
     public void gameTurn(){
-	System.out.println(woah);
 	while (!win()){
+	    System.out.println(woah);
 	    if(totalTurns == 0)
 		player1.firstTurn(woah);
 	    else if(totalTurns == 1)

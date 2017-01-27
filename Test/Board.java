@@ -113,7 +113,7 @@ public class Board{
     public boolean isBoardFull(){
 	for(int x = 0; x < size; x ++){
 	    for(int y = 0; y < size; y ++){
-		if(isOccupied(x, y))
+		if(isEmpty(x, y))
 		    return false;
 	    }
 	}
@@ -170,8 +170,7 @@ public class Board{
       postcondition: returns true if the top piece of a stack is a capstone, false otherwise
     */
     public boolean isCapstone(int col, int row){
-	int lastPos = board[col][row].size() - 1;
-	return (board[col][row].get(lastPos) instanceof Capstone);
+	return (board[col][row].get(board[col][row].size() - 1) instanceof Capstone);
     }
 
     public boolean isTopPieceNotCapstone(int col, int row){
@@ -179,8 +178,7 @@ public class Board{
     }
 
     public boolean playerCap(int x, int y, int color){
-	int lastPos = board[x][y].size() - 1;
-	return (isCapstone(x, y) && board[x][y].get(lastPos).getColor() == color);
+	return (isCapstone(x, y) && board[x][y].get( board[x][y].size() - 1).getColor() == color);
     }
 
     public int getSize(){
@@ -192,8 +190,8 @@ public class Board{
 	       (x <= (size - 1)) &&
 	       (y <= (size - 1)) &&
 	       (y >= 0) &&
-	       (isOccupied(x, y)) &&
-	       (isTopPieceNotCapstone(x, y)));
+	       (isEmpty(x, y) ||
+		isTopPieceNotCapstone(x, y)));
     }
 
     public boolean capMovingStack(int x, int y){
@@ -201,7 +199,8 @@ public class Board{
 	       (x <= (size - 1)) &&
 	       (y <= (size - 1)) &&
 	       (y >= 0) &&
-	       (isTopPieceNotCapstone(x, y)));
+	       (isEmpty(x, y) || 
+		isTopPieceNotCapstone(x, y)));
     }
     
     public boolean stoneMoveStack(int x, int y){
@@ -209,9 +208,9 @@ public class Board{
 	       (x <= (size - 1)) &&
 	       (y <= (size - 1)) &&
 	       (y >= 0) &&
-	       (isOccupied(x, y)) &&
-	       (isTopPieceNotCapstone(x, y)) &&
-	       (isTopPieceNotWall(x, y)));
+	       (isEmpty(x, y) ||
+		(isTopPieceNotCapstone(x, y) &&
+		 isTopPieceNotWall(x, y))));
     }
 
     public boolean stoneMovingStack(int x, int y){
@@ -219,8 +218,9 @@ public class Board{
 	       (x <= (size - 1)) &&
 	       (y <= (size - 1)) &&
 	       (y >= 0) &&
-	       (isTopPieceNotCapstone(x, y)) &&
-	       (isTopPieceNotWall(x, y)));
+	       (isEmpty(x, y) ||
+		(isTopPieceNotCapstone(x, y) &&
+		 isTopPieceNotWall(x, y))));
     }
     /*
     public String printChecked(){
@@ -329,11 +329,13 @@ public class Board{
 	int p2color = 0;
 	for(int x = 0; x < size; x ++){
 	    for(int y = 0; y < size; y ++){
-		if (isTopPieceNotWall(x, y)){
-		    if(stackOwner(x, y) == p1)
-			p1color += 1;
-		    else
-			p2color += 1;
+		if(isOccupied(x, y)){
+		    if (isTopPieceNotWall(x, y)){
+			if(stackOwner(x, y) == p1)
+			    p1color += 1;
+			else
+			    p2color += 1;
+		    }
 		}
 	    }
 	}
