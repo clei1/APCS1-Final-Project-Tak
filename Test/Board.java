@@ -112,7 +112,7 @@ public class Board{
 
     public boolean isBoardFull(){
 	for(int x = 0; x < size; x ++){
-	    for(int y = 0; y < size; x ++){
+	    for(int y = 0; y < size; y ++){
 		if(isOccupied(x, y))
 		    return false;
 	    }
