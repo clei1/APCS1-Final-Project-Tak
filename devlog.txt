@@ -10,25 +10,27 @@ Tak Game
 ------------------------------------------
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-The moveStacks() and isRoad() methods were two of the biggest obstacles in the creation of this game. However, after hours of debugging and continued moral support through Skype, we were able to consider (hopefully) all the cases that a player has when moving a stack or creating a road, and returning the proper boolean for that outcome.
+The moveStacks() and isRoad() methods were two of the biggest obstacles in the creation of this game. However, after hours of debugging and continued moral support through Skype, we were able to consider (hopefully) all the cases that a player has when moving a stack or creating a road, and returning the proper boolean for that outcome. Honestly, the biggest obstacle was working together.
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Because of the myriad of strategies players can use to create roads, we are not 100% certain if the isRoad() method will handle all cases of road creation. We have, however, tested and debugged various cases, and will only be able to see bugs if a player runs into one as the game progresses.
-
-Stacks are able to move on top of wall and capstones, which should not be possible.
+Wanted implementations:
+1) Undo option
+2) Go back and change your player move option
+3) Tourney style, since Woo is an Object, you could allow players to choose options of a best out of 5, etc.
+4) Cooler graphics (only just a fanciful wish)
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-We learned that strategy games are very hard to implement, but testing and debugging helped a lot. We also learned that having clear descriptive comments and variable names will help us not get lost in the future.
+We learned that strategy games are very hard to implement, but testing and debugging helped a lot. We also learned that having clear descriptive comments and variable names will help us not get lost in the future. We also learned about branching and ways to implement checking for things looping onto itself. We learned how make java create a text file, overwrite a file, etc. We improved our knowledge of emacs' shortcuts. We also learned a lot about control flow, which was a big problem for us because we had to keep in mind branching in four different directions. We learned about continue (which we didn't use), switch (which requires constants, so although it could have been really nice instead of all our if statements, it wasn't as useful as it could have been), break (although we learned about this before, we really understood and played with it in conjunction to switch), enum types, and while-do (which are the same thing, why would anyone use this instead of a normal while loop?). 
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Since we were able to make our board more versatile, we changed a hardcoded 5 by 5 board to take on sizes from 3 by 3 to 8 by 8 because we realized we would have time to code for bigger and smaller board sizes.
+Since we were able to make our board more versatile, we changed a hardcoded 5 by 5 board to take on sizes from 3 by 3 to 8 by 8 because we realized we would have time to code for bigger and smaller board sizes. We changed player options to only be allowed to print possible moves (which Connie is actually very proud of implementing because she thinks it was very clever of her). 
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-We learned that a GROUP project isn't successful without completely clear communication among all group members.
+We learned that a GROUP project isn't successful without completely clear communication among all group members. WE ALSO LEARNED GROUP MEMBERS NEED TO SPEAK UP WHEN THEIR CODE IS BROKEN. LEARN EMACS SHORTCUTS. They are actually super useful, expecially when you end up with 100+ errors and need to go to specific lines to fix syntax errors. It is alt-g-g and then typing in the line number. 
 
  ______   ______   __   __   __       ______   _______     
 /_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\    
@@ -113,6 +115,32 @@ Brian :: Testing, debugging.
 Connie :: Rewrote isRoad, corrected algorithm, added a exception handling, fixed isWall
 ==============================================================
 
+2017-01-23
+--------------------------------------------------------------
+Grace :: Begged Mr.Brown to let us work on it more, talked with group members, sent email
+Brian :: Talked with group members
+Connie :: Begged Mr.Brown to let us work on it more, talked with group members
+==============================================================
 
+2017-01-24
+--------------------------------------------------------------
+Grace :: Met with Connie, added all GitHub issues, worked on writing game intro, readme, and created gameIntro()
+Brian :: 
+Connie :: Met with Grace, added all GitHub issues, moved functions around, worked on implementing different win conditions such as player running out of stones and board being filled
+==============================================================
+
+2017-01-25
+--------------------------------------------------------------
+Grace :: 
+Brian :: 
+Connie :: Worked on implementing different win conditions such as player running out of stones and board being filled, redid parts of placePiece, changed Woo to an object, broke up old code into less functions
+==============================================================
+
+2017-01-26
+--------------------------------------------------------------
+Grace :: Met with everyone, worked on toString() with Brian, debugged, added file creation, added statistics
+Brian :: Met with everyone, worked on toString() with Grace
+Connie :: Rewrote moveStacks(), the main bug, debugged (over 400 + errors!!!! because she is a bad coder and doesn't compile until the very end and then has to fix five million errors), merged files stuff
+==============================================================
 
 
