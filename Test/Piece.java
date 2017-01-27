@@ -42,4 +42,8 @@ public class Piece{
 	x = ex;
 	y = why;
     }
+
+    public void setStone(){
+	isWall = false;
+    }
 }

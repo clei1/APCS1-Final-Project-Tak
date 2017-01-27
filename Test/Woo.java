@@ -139,7 +139,7 @@ public class Woo{
 	    else
 		return (player2.getName() +" won because they have successfully created a road!");
 	}
-	switch(woah.stackWinner(Player player1, Player player2)){
+	switch(woah.stackWinner(player1, player2)){
 	    case -1:
 		return ("If the board is filled or if one of the players run out of stones to place, the player with more flatstones on top of stacks wins! " + player1.getName() + "and " + player2.getName() + " both have the same amount of pieces so it is a tie!");
 	    case 1:
@@ -163,8 +163,8 @@ public class Woo{
 	if(answer.equals("yes") || answer.equals("y")){
 	    System.out.println("STATS");
 	    System.out.println("Total Number of Turns:" + totalTurns);
-	    System.out.println("Number of White's Turns:" + );
-	    System.out.println("Number of Black's Turns:" + );
+	    System.out.println("Number of White's Turns:");
+	    System.out.println("Number of Black's Turns:");
 	    
 	}
     }

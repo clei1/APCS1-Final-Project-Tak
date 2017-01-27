@@ -59,9 +59,9 @@ public class Board{
     */
 
     public boolean hasStacks(int color){
-	for(int col = 0; col < size; col ++){
-	    for(int row = 0; row < size; row ++){
-		if(stackOwner(col, row) == color){
+	for(int x = 0; x < size; x ++){
+	    for(int y = 0; y < size; y ++){
+		if(stackOwner(x, y) == color){
 		    //if tile is empty, it inputs -1
 		    //if tile is controlled by black, it inputs 0
 		    //if tile is controlled by white, it inputs 1
@@ -77,11 +77,10 @@ public class Board{
       precondition: instantiated board
       postcondition: returns true if there is at least one piece on the board, false otherwise
     */
-
     public boolean hasStacks(){
-	for(int col = 0; col < size; col ++){
-	    for(int row = 0; row < size; row ++){
-		if(isOccupied(col, row)){
+	for(int x = 0; x < size; x ++){
+	    for(int y = 0; y < size; y ++){
+		if(isOccupied(x, y)){
 		    //if tile is not empty, it inputs TRUE
 		    //if tile is empty, it inputs FALSE
 		    return true;
@@ -97,8 +96,8 @@ public class Board{
       postcondition: returns true if the tile at the specified position has no pieces on it, false otherwise
     */
 
-    public boolean isEmpty(int col, int row){
-	return board[col][row].size() == 0;
+    public boolean isEmpty(int x, int y){
+	return board[x][y].size() == 0;
     }
 
     /*
@@ -107,8 +106,8 @@ public class Board{
       postcondition: returns true if tile at the specified position has at least one piece on it, false otherwise
     */
 
-    public boolean isOccupied(int col, int row){
-	return (!isEmpty(col, row));
+    public boolean isOccupied(int x, int y){
+	return (!isEmpty(x, y));
     }
 
     public boolean isBoardFull(){
@@ -142,8 +141,8 @@ public class Board{
       postcondition: returns true if 'color' owns the stack at the tile, false otherwise
     */
     
-    public boolean isTopPieceColor(int col , int row, int color){
-	return stackOwner(col, row) == color;
+    public boolean isTopPieceColor(int x , int y, int color){
+	return stackOwner(x, y) == color;
     }
 
     /*
@@ -151,7 +150,6 @@ public class Board{
       precondition: an instantiated board with pieces placed
       postcondition: returns true if the top piece of a stack is a wall, false otherwise
     */
-
     public boolean isTopPieceWall(int col, int row){
 	int lastPos = board[col][row].size() - 1;
 	return board[col][row].get(lastPos).isWall();
@@ -162,7 +160,6 @@ public class Board{
       precondition: an instantiated board with pieces placed
       postcondition: returns true if the top piece of a stack is not a wall, false otherwise
     */
-
     public boolean isTopPieceNotWall(int col, int row){
 	return (!isTopPieceWall(col, row));
     }
@@ -172,18 +169,59 @@ public class Board{
       precondition: instantiated board with pieces on it
       postcondition: returns true if the top piece of a stack is a capstone, false otherwise
     */
-
     public boolean isCapstone(int col, int row){
 	int lastPos = board[col][row].size() - 1;
-	if(board[col][row].get(lastPos).toString() == "BLACK CAPSTONE" ||
-	   board[col][row].get(lastPos).toString() == "WHITE CAPSTONE"){
-	    return true;
-	}
-	else{
-	    return false;
-	}
+	return (board[col][row].get(lastPos) instanceof Capstone);
+    }
+
+    public boolean isTopPieceNotCapstone(int col, int row){
+	return (!isCapstone(col, row));
+    }
+
+    public boolean playerCap(int x, int y, int color){
+	int lastPos = board[col][row].size() - 1;
+	return (isCapstone(x, y) && board[x][y].get(lastPos).getColor() == color);
+    }
+
+    public boolean getSize(){
+	return size;
     }
     
+    public boolean capMoveStack(int x, int y){
+	return((x >= 0) &&
+	       (x <= (size - 1)) &&
+	       (y <= (size - 1)) &&
+	       (y >= 0) &&
+	       (isOccupied(x, y)) &&
+	       (isNotCapstone(x, y)));
+    }
+
+    public boolean capMovingStack(int x, int y){
+	return((x >= 0) &&
+	       (x <= (size - 1)) &&
+	       (y <= (size - 1)) &&
+	       (y >= 0) &&
+	       (isNotCapstone(x, y)));
+    }
+    
+    public boolean stoneMoveStack(int x, int y){
+	return((x >= 0) &&
+	       (x <= (size - 1)) &&
+	       (y <= (size - 1)) &&
+	       (y >= 0) &&
+	       (isOccupied(x, y)) &&
+	       (isTopPieceNotCapstone(x, y)) &&
+	       (isTopPieceNotWall(x, y)));
+    }
+
+    public boolean stoneMovingStack(int x, int y){
+	return((x >= 0) &&
+	       (x <= (size - 1)) &&
+	       (y <= (size - 1)) &&
+	       (y >= 0) &&
+	       (isTopPieceNotCapstone(x, y)) &&
+	       (isTopPieceNotWall(x, y)));
+    }
     /*
     public String printChecked(){
 	String temp = "[";
@@ -230,6 +268,7 @@ public class Board{
 	}
 
 	checked = populate(color);
+	//System.out.println(printChecked());
 	for(int x = 0; x < size; x ++){
 	    if(checked[x][0] == 1 && !leftCol){
 		leftCol = true;
@@ -251,8 +290,6 @@ public class Board{
 	return false;
     }
 
-
-    
     public int[][] populate(int color){
 	int[][] temp = new int[size][size];
 	for(int x = 0; x < size; x ++){
@@ -266,8 +303,6 @@ public class Board{
 	}
 	return temp;
     }
-
-    
 
     public boolean road(int x, int y){
 	if(checked[x][y] == 2){
@@ -283,7 +318,7 @@ public class Board{
 	    return ( (((x - 1) >= 0) && road(x - 1, y)) ||
 		     (((x + 1) < size) && road(x + 1, y)) ||
 		     (((y - 1) >= 0) && road(x, y - 1)) ||
-		     (((y + 1 ) < size && road(x, y + 1))) );
+		     (((y + 1) < size) && road(x, y + 1)) );
 	}
 	return false;	
     }
@@ -308,7 +343,46 @@ public class Board{
 	    return 1;
 	return -1;
     }
-			    
+
+    public int getStackSize(int x, int y){
+	if(board[x][y].size() > size){
+	    return size;
+	}
+	else{
+	    return board[x][y].size();
+	}
+    }
+    
+    public ArrayList<Piece> getStack(int x, int y, int stackSize){
+	int lastPos = board[x][y].size() - 1;
+	ArrayList<Piece> temp = new ArrayList<Piece>(stackSize);
+	for(int x = 0; stackSize > x; x ++){
+	    temp.add(0, board[x][y].get(board[x][y].size() - 1));
+	    board[x][y].remove(board[x][y].size() - 1);
+	}
+	return temp;
+    }
+    
+    public isTopPieceStone(int x, int y){
+	if(isTopPieceNotWall(x, y) && isTopPieceNotCapstone(x, y));
+    }
+    /*    
+    public boolean square(int x, int y){
+	return ( (((x - 1) >= 0) && isOccupied(x - 1, y) && isTopPieceStone(x - 1, y)) ||
+		 (((x + 1) < size ) && isOccupied(x + 1, y) && isTopPieceStone(x + 1, y)) ||
+		 (((y - 1) >= 0) && isOccupied(x, y - 1) && isTopPieceStone(x, y - 1)) ||
+		 (((y + 1 ) < size) && isOccupied(x, y + 1) && isTopPieceStone(x, y + 1)));
+    }
+    */
+    public int getStackSize(int x, int y){
+	return (board[x][y].length - 1);
+    }
+
+    public void flattenWall(int x, int y){
+	int lastPos = board[x][y].size() - 1;
+	board[x][y].get(lastPos).setStone();
+    }
+    
     /*
     public static boolean road(int[][] checked, int x, int y){
 	if(checked[x][y] == 2){

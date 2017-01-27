@@ -49,7 +49,7 @@ public class Player {
 	return color;
 
     public boolean hasStones()
-	return (numStones +  numCap > 0)
+	return (numStones +  numCap > 0);
 
     public boolean noPiecesLeft()
 	return ! hasStones();
@@ -75,23 +75,23 @@ public class Player {
 	    x = Keyboard.readInt();
 	    y = Keyboard.readInt();
 	    while((x < 0) ||
-		  (x >= size) ||
+		  (x >= woah.getSize()) ||
 		  (y < 0) ||
-		  (y >= size)){
-		System.out.println("Your chosen location doesn't exist. Have you been eating plum bob? If so, that was a bad decision.");
+		  (y >= woah.getSize())){
+		System.out.println("Your chosen location doesn't exist. Have you been eating plum bob? That was a bad decision.");
 		x = Keyboard.readInt();
 		y = Keyboard.readInt();
 	    }
 	}
-	b.board[x][y].add(new Stone(color, x, y, false));	
+	woah.board[x][y].add(new Stone(color, x, y, false));	
     }
     
     public void turn(Board woah){
 	System.out.println(name + ", it's now your turn.");
 	int counter = 1;
-	int moveStone = 0;
-	int moveStack = 0;
-	int viewStack = 0;
+	int moveStone = -1;
+	int moveStack = -1;
+	int viewStack = -1;
 	int move = -1;
 	
 	if(p.hasStones()){
@@ -132,7 +132,7 @@ public class Player {
 		placeStone (woah);
 		break;
 	    case moveStack:
-	        moveStack(woah);
+	        moveStack (woah);
 		break;
 	}
     }
@@ -203,15 +203,306 @@ public class Player {
 		break;
 	}
     }
-
-
     
-    /*
-      void moveStack(int x, int y, int stackSize, String direction, Board b)
-      precondition: an instantiated board and players
-      postcondition: moves a stack of a specified size; basically, you are dropping pieces off from a stack in the direction you move
-      stones/walls/capstones are placed on new tiles
-    */
+    public void moveStack(Board woah){
+	//=======================================================================================================================================================================
+	
+	System.out.println("Which stack would you like to move? Location:");
+	int x = Keyboard.readInt();
+	int y = Keyboard.readInt();
+	while((x < 0) ||
+	      (x >= size) ||
+	      (y < 0) ||
+	      (y >= size)){
+	    System.out.println("Your chosen location doesn't exist. Have you been eating plum bob? That was a bad decision.");
+	     x = Keyboard.readInt();
+	     y = Keyboard.readInt();
+	}
+
+	while(woah.isEmpty(x, y)){
+	    System.out.println("This tile is empty! There is no stack here. Remember, the first column and row is 0, not 1. You also have to input row first!");
+	    x = Keyboard.readInt();
+	    y = Keyboard.readInt();
+	    while((x < 0) ||
+		  (x >= size) ||
+		  (y < 0) ||
+		  (y >= size)){
+		System.out.println("Your chosen location doesn't exist. Have you been eating plum bob? If so, that was a bad decision.");
+		x = Keyboard.readInt();
+		y = Keyboard.readInt();
+	    }
+	}
+
+	while("stack is under their control"){
+	    System.out.println("This stack is not under your control so you cannot move it! In order for you to control the stack, the top piece of the stack must be your color!");
+	    x = Keyboard.readInt();
+	    y = Keyboard.readInt();
+	    while(woah.isEmpty(x, y)){
+		System.out.println("This tile is empty! There is no stack here. Remember, the first column and row is 0, not 1. You also have to input row first!");
+		x = Keyboard.readInt();
+		y = Keyboard.readInt();
+		while((x < 0) ||
+		      (x >= size) ||
+		      (y < 0) ||
+		      (y >= size)){
+		    System.out.println("Your chosen location doesn't exist. Have you been eating plum bob? If so, that was a bad decision.");
+		    x = Keyboard.readInt();
+		    y = Keyboard.readInt();
+		}
+	    }
+	}
+
+	while((!woah.playerCap(x, y, color)) || (!woah.stoneMoveStack(x, y))){
+	    System.out.println("This stack is surrounded by immovable parts. Since your stack does not have capstone at the top, you cannot move. If you had a capstone, you could break down the walls surrounding you.");
+	    x = Keyboard.readInt();
+	    y = Keyboard.readInt();
+	    while("stack is under their control"){
+		System.out.println("This stack is not under your control so you cannot move it! In order for you to control the stack, the top piece of the stack must be your color!");
+		x = Keyboard.readInt();
+		y = Keyboard.readInt();
+		while(woah.isEmpty(x, y)){
+		    System.out.println("This tile is empty! There is no stack here. Remember, the first column and row is 0, not 1. You also have to input row first!");
+		    x = Keyboard.readInt();
+		    y = Keyboard.readInt();
+		    while((x < 0) ||
+			  (x >= size) ||
+			  (y < 0) ||
+			  (y >= size)){
+			System.out.println("Your chosen location doesn't exist. Have you been eating plum bob? If so, that was a bad decision.");
+			x = Keyboard.readInt();
+			y = Keyboard.readInt();
+		    }
+		}
+	    }
+	}
+	
+	//=======================================================================================================================================================================
+	
+	int stackSize = woah.getStackSize(int x, int y);
+	ArrayList<Piece> stack = woah.getStack(int x, int y, stackSize);
+	
+	//=======================================================================================================================================================================
+	
+	String direction = "";
+	System.out.println("Which direction would you like to move?");
+	int counter = 1;
+	int left = -1;
+	int right = -1;
+	int up = -1;
+	int down = -1;
+	if(woah.playerCap(x, y, color)){
+	    if(woah.capMoveStack(x - 1, y)){
+		System.out.println(counter + ": up");
+		up = counter;
+		counter ++;
+	    }
+	    if(woah.capMoveStack(x + 1, y)){
+		System.out.println(counter + ": down");
+		down = counter;
+		counter ++;
+	    }
+	    if(woah.capMoveStack(x, y + 1)){
+		System.out.println(counter + ": right");
+		right = counter;
+		counter ++;
+	    }
+	    if(woah.capMoveStack(x, y - 1)){
+		System.out.println(counter + ": left");
+		left = counter;
+		counter ++;
+	    }
+	}
+	else {
+	    if(woah.stoneMoveStack(x - 1, y)){
+		System.out.println(counter + ": up");
+		up = counter;
+		counter ++;
+	    }
+	    if(woah.stoneMoveStack(x + 1, y)){
+		System.out.println(counter + ": down");
+		down = counter;
+		counter ++;
+	    }
+	    if(woah.stoneMoveStack(x, y + 1)){
+		System.out.println(counter + ": right");
+		right = counter;
+		counter ++;
+	    }
+	    if(woah.stoneMoveStack(x, y - 1)){
+		System.out.println(counter + ": left");
+		left = counter;
+		counter ++;
+	    }
+	}
+	    
+	int move;
+	System.out.println("Which direction would you like to move?");
+	move = Keyboard.readInt();
+	while(move < 1 || move >= counter){
+	    System.out.println("You will meet Chandrian on that path. Choose more wisely.");
+	    move = Keyboard.readInt();
+	}
+
+	switch(move){
+	case left:
+	    direction = "left";
+	    break;
+	case right:
+	    direction = "right";
+	    break;
+	case up:
+	    direction = "up";
+	    break;
+	case down:
+	    direction = "down";
+	    break;
+	}
+
+	//=======================================================================================================================================================================
+	
+	int startX = x;
+	int startY = y;
+	while(stackSize > 0){
+	    int leftB = 0;
+	    //if the stack is controlled by the player's capstone
+	    if(stack.get(stack.size() - 1) instanceof Capstone){
+		//while the next position is not the edge of the board or occupied by a capstone
+		while(woah.capMovingStack(updateX(x, direction), updateY(y, direction))){
+		    //if the next piece is not a wall
+		    if(woah.isTopPieceNotWall(updateX(x, direction), updateY(y, direction))){
+			//if your current position is your starting position
+			if(startX == x && startY == y){
+			    System.out.println("How many stones would you like to leave behind?");
+			    leftB = Keyboard.readInt();
+			    while(leftB < 0 || leftB >= stackSize){
+				System.out.println("You can't leave negative stones or all stones behind!");
+				leftB = Keyboard.readInt();
+			    }
+			    //subtract that many stones from your stack
+			    stackSize -= leftB;
+			    /*case capstone:
+		b.board[x][y].add(new Capstone(color, x, y, false));
+		break;*/	
+			    stack = addStack(woah, x, y, stack, leftB);
+			}
+			//if your current position is not your starting position
+			else{
+			    System.out.println("How many stones would you like to leave behind? Since you have moved already, you must leave at least one stone behind!");
+			    leftB = Keyboard.readInt();
+			    while(leftB < 1 || leftB > stackSize){
+				System.out.println("You can't leave negative stones or no stones behind!");
+				leftB = Keyboard.readInt();
+			    }
+			    //subtract that many stones from your stack
+			    stackSize -= leftB;
+			    stack = addStack(woah, x, y, stack, leftB);
+			}
+			//since you have left pieces behind and your stack has been updated, you move one place in that direction
+			x = updateX(x, direction);
+			y = updateY(y, direction);
+		    }
+		    //if the next piece is a wall
+		    else{
+			System.out.println("The next piece is a wall! Only your capstone can flatten it meaning you have to leave the rest of your stack at your current position.");
+			System.out.println("1: Flatten wall");
+			System.out.println("2: Stay at current position");
+			int flat = Keyboard.readInt();
+			while( flat != 1 || flat != 2){
+			    System.out.println("A wall makes Tak great, but a road will connect our worlds! Flatten or leave it standing?");
+			    flat = Keyboard.readInt();
+			}
+			if(flat == 1){
+			    stack = addStack(woah, x, y, stack, stackSize - 2);
+			    stackSize = 1;
+			    x = updateX(x, direction);
+			    y = updateY(y, direction);
+			    woah.flattenWall(x, y);
+			    addStack(woah, x, y, stack);
+			    return;
+			}
+			else {
+			    addStack(woah, x, y, stack);
+			    return;
+			}
+		    }
+		}
+		System.out.println("You can't move anymore! Your stack is deposited at your current position!");
+		addStack(woah, x, y, stack);
+		return;
+	    }
+	    //if the stack is not controlled by the player's capstone
+	    else{
+		//while the next position is not the edge of the board or occupied by a capstone
+		while(woah.stoneMovingStack(updateX(x, direction), updateY(y, direction))){
+		    //if your current position is your starting position
+		    if(startX == x && startY == y){
+			System.out.println("How many stones would you like to leave behind?");
+			leftB = Keyboard.readInt();
+			while(leftB < 0 || leftB >= stackSize){
+			    System.out.println("You can't leave negative stones or all stones behind!");
+			    leftB = Keyboard.readInt();
+			}
+			//subtract that many stones from your stack
+			stackSize -= leftB;
+			stack = addStack(woah, x, y, stack, leftB);
+		    }
+		    //if your current position is not your starting position
+		    else{
+			System.out.println("How many stones would you like to leave behind? Since you have moved already, you must leave at least one stone behind!");
+			leftB = Keyboard.readInt();
+			while(leftB < 1 || leftB > stackSize){
+			    System.out.println("You can't leave negative stones or no stones behind!");
+			    leftB = Keyboard.readInt();
+			}
+			//subtract that many stones from your stack
+			stackSize -= leftB;
+			stack = addStack(woah, x, y, stack, leftB);
+		    }
+		    //since you have left pieces behind and your stack has been updated, you move one place in that direction
+		    x = updateX(x, direction);
+		    y = updateY(y, direction);
+		}
+		System.out.println("You can't move anymore! Your stack is deposited at your current position!");
+		addStack(woah, x, y, stack);
+		return;
+	    }
+	}
+    }
+
+    public int updateX(int x, String direction){
+	if(direction == "right" || direction == "left")
+	    return x;
+	if(direction == "up")
+	    return (x - 1);
+	else
+	    return (x + 1);
+    }
+
+    public int updateY(int y, String direction){
+	if(direction == "up" || direction == "down")
+	    return y;
+	if(direction == "left")
+	    return (y - 1);
+	return (y + 1);
+    }
+
+    public ArrayList<Piece> addStack(Board woah, int x, int y, ArrayList<Piece> stack, int leftB){
+	ArrayList<Piece> temp = new ArrayList<Piece>(stack.size() - leftB);
+	while(int count = 0; count < leftB; count ++){
+	    woah.board[x][y].add(stack.get(count));
+	}    
+        while(int count = leftB; count < stack.size; count ++){
+	    temp.add(stack.get(count));
+	}
+	return temp;
+    }
+
+    public void addStack(Board woah, int x, int y, ArrayList<Piece> stack){
+	while(int count = 0; count < stack.size; count ++){
+	    woah.board[x][y].add(stack.get(count));
+	} 
+    }
+    
     public void moveStack( int x, int y, int stackSize, String direction, Board b ) {
 	ArrayList<Piece> stack =  b.board[x][y];
 	int size = stack.size();
