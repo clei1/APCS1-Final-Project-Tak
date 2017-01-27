@@ -282,7 +282,7 @@ public class Board{
 	if(leftCol && rightCol){
 	    for(int x = 0; x < size; x ++){
 		if((checked[x][0] == 1) && road(x, 0)){
-		    
+		    return true;
 		}
 	    }
 	}

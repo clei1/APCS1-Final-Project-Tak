@@ -18,10 +18,10 @@ public class Capstone extends Piece{
     public String toString(){
 	String s;
 	if (color == 0) {
-	    s = "BLACK CAPSTONE";
+	    s = "\u2654 ";
 	}
 	else if (color == 1) {
-	    s = "WHITE CAPSTONE";
+	    s = "\u265A ";
 	}
 	else {
 	    throw new IllegalArgumentException("Not a valid color.");

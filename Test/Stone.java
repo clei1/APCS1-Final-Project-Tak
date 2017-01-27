@@ -7,20 +7,20 @@ public class Stone extends Piece {
     /*~~~~~~~~~~~~~OVERLOADED TOSTRING()~~~~~~~~~~~~~*/
     public String toString() {
 	String s;
-	if (color == 0) {
-	    s = "BLACK ";
+	if (color == 0 && !isWall) {
+	    s = "\u25A0";
 	}
-	else if (color == 1) {
-	    s = "WHITE ";
+	else if (color == 1 && !isWall) {
+	    s = "\u25A2 ";
+	}
+	else if (color == 0 && isWall) {
+	    s = "\u25B2";
+	}
+	else if (color == 1 && isWall) {
+	    s = "\u25B3 ";
 	}
 	else {
 	    throw new IllegalArgumentException("Not a valid color.");
-	}
-	if (isWall) {
-	    s += "WALL";
-	}
-	else {
-	    s += "STONE";
 	}
 	return s;
     }
