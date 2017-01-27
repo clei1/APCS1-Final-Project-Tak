@@ -40,12 +40,11 @@ public class Woo{
 		System.out.println("In this case, the player with the most regular stones on top of the tiles and stacks wins.\n");
 
 		System.out.println("Meet the pieces:");
+		System.out.println("Stone: a stone is your standard piece in Tak. it is counted as a part of roads, and can be moved anywhere, except on capstones and walls. In this game, it is represented as \u25A0 for black and \u25A2 for white.");
 
-		System.out.println("Stone: a stone is your standard piece in Tak. It is counted as a part of roads, and can be moved anywhere, except on capstones and walls.");
+		System.out.println("Wall: a wall is a standing stone. It is used to block roads from being formed. It can be moved anywhere, except on other walls and capstones. In addition, it can be flattened by capstones, essentially turning it back into a regular stone. In this game, it is represented as \u25B2 for black and \u25B3 for white.");
 
-		System.out.println("Wall: a wall is a standing stone. It is used to block roads from being formed. It can be moved anywhere, except on other walls and capstones. In addition, it can be flattened by capstones, essentially turning it back into a regular stone.");
-
-		System.out.println("Capstone: a capstone is a special piece that can be moved anywhere, except on other capstones. It has the power to flatten walls back into stones.\n");
+		System.out.println("Capstone: a capstone is a special piece that can be moved anywhere, except on other capstones. It has the power to flatten walls back into stones. In this game, it is represented as \u2654 for black and \u265A for white.\n");
 
 		System.out.println("How to input a board location correctly: Follow this format 'row column'");
 		System.out.println("Example:");
