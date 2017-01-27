@@ -168,15 +168,16 @@ public class Woo{
 	    try{
 		PrintWriter outputStream = new PrintWriter("stats.txt");
 		woah.calculateNumStacks();
+		woah.statsGenerator();
 		stats+= "Turns Played: " + totalTurns+"\n";
-		/*stats+= "Black Stones Placed: " + woah.numBlackStones + "\n";
+		stats+= "Black Stones Placed: " + woah.numBlackStones + "\n";
 		stats+= "Black Walls Placed: " + woah.numBlackWalls + "\n";
 		stats+= "Black Capstones Placed: " + woah.numBlackCapstones + "\n";
 		stats+= "Black Stacks Controlled At End: " + woah.numBlackStacks + "\n";
 		stats+= "White Stones Placed: " + woah.numWhiteStones + "\n";
 		stats+= "White Walls Placed: " + woah.numWhiteWalls + "\n";
 		stats+= "White Capstones Placed: " + woah.numWhiteCapstones + "\n";
-		stats+= "White Stacks Controlled At End: " + woah.numWhiteStacks + "\n";*/
+		stats+= "White Stacks Controlled At End: " + woah.numWhiteStacks + "\n";
 		stats+= "Size of the board: " + woah.size + "\n";
 		outputStream.print(stats);
 		outputStream.close();

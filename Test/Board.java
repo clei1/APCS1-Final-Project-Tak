@@ -402,6 +402,33 @@ public class Board{
 	    }
 	}
     }
+    
+    public void statsGenerator(){
+	for(int x = 0; x < size; x ++){
+	    for(int y = 0; y < size; y ++){
+		for(Piece a : board[x][y]){
+		    if(a.isWall){
+			if(a.getColor() == 0)
+			    numBlackWalls++;
+			else
+			    numWhiteWalls++;
+		    }
+		    else if(a instanceof Capstone){
+			if(a.getColor() == 0)
+			    numBlackCapstones++;
+			else
+			    numWhiteCapstones++;
+		    }
+		    else{
+			if(a.getColor() == 0)
+			    numBlackStones++;
+			else
+			    numWhiteStones++;
+		    }
+		}
+	    }
+	}
+    }
 
     /*~~~~~~~~~~~~~ACCESSORS~~~~~~~~~~~~~*/
     /*
