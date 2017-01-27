@@ -374,7 +374,7 @@ public class Woo {
 	    System.out.println("Game stats have been generated! Check them out at stats.txt in this directory.");
 	}
 	catch(Exception e){
-	    System.out.println("Stats generation failed");
+	    System.out.println("Stats generation failed. But we can print them in the terminal:\n"+stats);
 	}
 	
     }

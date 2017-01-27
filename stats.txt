@@ -1,1 +1,9 @@
-woazaaa
+Turns Played: 5
+Black Stones Placed: 2
+Black Walls Placed: 0
+Black Capstones Placed: 0
+Black Stacks Controlled At End: 2
+White Stones Placed: 3
+White Walls Placed: 0
+White Capstones Placed: 0
+White Stacks Controlled At End: 3
