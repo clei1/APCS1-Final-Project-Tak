@@ -7,3 +7,4 @@ White Stones Placed: 3
 White Walls Placed: 0
 White Capstones Placed: 0
 White Stacks Controlled At End: 3
+Size of the board: 3

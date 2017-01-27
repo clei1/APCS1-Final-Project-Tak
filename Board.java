@@ -19,7 +19,7 @@ public class Board{
     int numRoads; //not implemented
     int numTurns;
 
-     /*~~~~~~~~~~~~~OVERLOADED CONSTRUCTOR~~~~~~~~~~~~~*/
+    /*~~~~~~~~~~~~~OVERLOADED CONSTRUCTOR~~~~~~~~~~~~~*/
     //Input: Takes a player inputted number between 3 to 8, defining the size
     public Board(int s){
 	board = new ArrayList[s][s]; //created board with player defined size
@@ -186,7 +186,7 @@ public class Board{
 	}
     }
     
-    /*
+    
     public String printChecked(){
 	String temp = "[";
 	for(int x = 0; x < size; x ++){
@@ -194,11 +194,11 @@ public class Board{
 		temp += checked[x][y] + ", ";
 	    }
 	    temp += "\n";
-	    }
-	    temp += "]";
-	    return temp;
-	    }
-    */
+	}
+	temp += "]";
+	return temp;
+    }
+    
 
     /*
       boolean isRoad(int color)
@@ -207,7 +207,7 @@ public class Board{
     */
     public boolean isRoad(int color){
 	checked = populate(color);
-	//System.out.println(printChecked());
+	System.out.println(printChecked());
 	
 	boolean topRow = false;
 	boolean botRow = false;
@@ -245,7 +245,7 @@ public class Board{
 	if(leftCol && rightCol){
 	    for(int x = 0; x < size; x ++){
 		if((checked[x][0] == 1) && road(x, 0)){
-		    
+		    return true; 
 		}
 	    }
 	}
@@ -308,7 +308,7 @@ public class Board{
 	return false;	
     }
 
-    /*public static void main(String[] args){
+    public static void main(String[] args){
 	int[][] checked = {{0, 0, 1, 0, 0},
 			   {0, 0, 1, 0, 0},
 			   {0, 1, 1, 1, 1},
@@ -317,7 +317,7 @@ public class Board{
 	
 	System.out.print(road(checked, 0, 2));
     }
-    */
+    
     public void calculateNumStacks(){
 	for (int i = 0; i < size; i++) {
 	    for (int j = 0; j < size; j++) {

@@ -369,6 +369,7 @@ public class Woo {
 	    stats+= "White Walls Placed: " + woah.numWhiteWalls + "\n";
 	    stats+= "White Capstones Placed: " + woah.numWhiteCapstones + "\n";
 	    stats+= "White Stacks Controlled At End: " + woah.numWhiteStacks + "\n";
+	    stats+= "Size of the board: " + woah.size + "\n";
 	    outputStream.print(stats);
 	    outputStream.close();
 	    System.out.println("Game stats have been generated! Check them out at stats.txt in this directory.");
