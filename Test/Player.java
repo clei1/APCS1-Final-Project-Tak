@@ -15,31 +15,28 @@ public class Player {
 	name = n;
 	color = c;
 
-	switch (size) {
-	case 3:
+	if(size == 3){
 	    numStones = 10;
 	    numCap = 0;
-	    break;
-	case 4:
+	}
+	if(size == 4){
 	    numStones = 15;
-	    numCap = 0;
-	    break;
-	case 5:
+	    numCap = 0;}
+	if(size == 5){
 	    numStones = 21;
 	    numCap = 1;
-	    break;
-	case 6:
+	}
+	if(size == 6){
 	    numStones = 30;
 	    numCap = 1;
-	    break;
-	case 7:
+	}
+	if(size == 7){
 	    numStones = 40;
 	    numCap = 2;
-	    break;
-	case 8:
+	}
+        if(size == 8){
 	    numStones = 50;
 	    numCap = 2;
-	    break;
 	}
     }
 
