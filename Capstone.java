@@ -4,16 +4,7 @@ public class Capstone extends Piece{
     public Capstone(int color, int x, int y, boolean wall){
 	super(color,x,y, wall);
     }
-
-    /*~~~~~~~~~~~~~METHODS~~~~~~~~~~~~~*/
-    /*
-      void flattenWall(Stone s)
-      precondition: none
-      postcondition: if the Stone under the Capstone is a wall, it will get flattened and will turn into a regular Stone
-    */
-    public void flattenWall(Stone s){
-	s.wallToStone(); //invokes wallToStone() method on the Stone
-    }
+	
     /*~~~~~~~~~~~~~OVERLOADED TOSTRING~~~~~~~~~~~~~*/
     public String toString(){
 	String s;
