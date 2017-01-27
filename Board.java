@@ -46,12 +46,7 @@ public class Board{
 	}
 	return s;
     }
-    
-    /*~~~~~~~~~~~~ACCESSORS~~~~~~~~~~~~*/
-    public int getSize(){
-	return size;
-    }
-	
+
     /*~~~~~~~~~~~~~METHODS~~~~~~~~~~~~~*/
     /*
       void displayStack(int x, int y)
@@ -66,16 +61,12 @@ public class Board{
 	System.out.println("BOTTOM");
     }
 
-    public void flattenWall(int x, int y){
-	int lastPos = board[x][y].size() - 1;
-	board[x][y].get(lastPos).setStone();
-    }
-    
     /*
       boolean hasStacks(int color)
       precondition: color input and instantiated board with pieces on it
       postcondition: returns true if there is a stack that is cotrolled by the inputted color
     */
+
     public boolean hasStacks(int color){
 	for(int x = 0; x < size; x ++){
 	    for(int y = 0; y < size; y ++){
@@ -234,29 +225,7 @@ public class Board{
 		 isTopPieceNotWall(x, y))));
     }
     
-     public int getStackSize(int x, int y){
-	if(board[x][y].size() > size){
-	    return size;
-	}
-	else{
-	    return board[x][y].size();
-	}
-    }
-    
-    public ArrayList<Piece> getStack(int x, int y, int stackSize){
-	int lastPos = board[x][y].size() - 1;
-	ArrayList<Piece> temp = new ArrayList<Piece>(stackSize);
-	for(int a = 0; stackSize > a; a ++){
-	    temp.add(0, board[x][y].get(board[x][y].size() - 1));
-	    board[x][y].remove(board[x][y].size() - 1);
-	}
-	return temp;
-    }
-    
-    public boolean isTopPieceStone(int x, int y){
-       return (isTopPieceNotWall(x, y) && isTopPieceNotCapstone(x, y));
-    }
-	
+    /*
     public String printChecked(){
 	String temp = "[";
 	for(int x = 0; x < size; x ++){
@@ -264,26 +233,12 @@ public class Board{
 		temp += checked[x][y] + ", ";
 	    }
 	    temp += "\n";
-	}
+	    }
 	    temp += "]";
 	    return temp;
-    }
-    
-	
-    public int[][] populate(int color){
-	int[][] temp = new int[size][size];
-	for(int x = 0; x < size; x ++){
-	    for(int y = 0; y < size; y ++){
-		if(isOccupied(x, y) &&
-		   isTopPieceNotWall(x, y) &&
-		   isTopPieceColor(x, y, color)){
-		    temp[x][y] = 1;
-		}
 	    }
-	}
-	return temp;
-    }
-	
+    */
+
     /*
       boolean isRoad(int color)
       precondition: an instantiated board
@@ -338,6 +293,20 @@ public class Board{
 	return false;
     }
 
+    public int[][] populate(int color){
+	int[][] temp = new int[size][size];
+	for(int x = 0; x < size; x ++){
+	    for(int y = 0; y < size; y ++){
+		if(isOccupied(x, y) &&
+		   isTopPieceNotWall(x, y) &&
+		   isTopPieceColor(x, y, color)){
+		    temp[x][y] = 1;
+		}
+	    }
+	}
+	return temp;
+    }
+
     public boolean road(int x, int y){
 	if(checked[x][y] == 2){
 	    return true;
@@ -379,7 +348,47 @@ public class Board{
 	    return 1;
 	return -1;
     }
-	
+
+    public int getStackSize(int x, int y){
+	if(board[x][y].size() > size){
+	    return size;
+	}
+	else{
+	    return board[x][y].size();
+	}
+    }
+    
+    public ArrayList<Piece> getStack(int x, int y, int stackSize){
+	int lastPos = board[x][y].size() - 1;
+	ArrayList<Piece> temp = new ArrayList<Piece>(stackSize);
+	for(int a = 0; stackSize > a; a ++){
+	    temp.add(0, board[x][y].get(board[x][y].size() - 1));
+	    board[x][y].remove(board[x][y].size() - 1);
+	}
+	return temp;
+    }
+    
+    public boolean isTopPieceStone(int x, int y){
+       return (isTopPieceNotWall(x, y) && isTopPieceNotCapstone(x, y));
+    }
+    /*    
+    public boolean square(int x, int y){
+	return ( (((x - 1) >= 0) && isOccupied(x - 1, y) && isTopPieceStone(x - 1, y)) ||
+		 (((x + 1) < size ) && isOccupied(x + 1, y) && isTopPieceStone(x + 1, y)) ||
+		 (((y - 1) >= 0) && isOccupied(x, y - 1) && isTopPieceStone(x, y - 1)) ||
+		 (((y + 1 ) < size) && isOccupied(x, y + 1) && isTopPieceStone(x, y + 1)));
+    }
+    
+    public int getStackSize(int x, int y){
+    return (board[x][y].length - 1);
+    }
+    */
+
+    public void flattenWall(int x, int y){
+	int lastPos = board[x][y].size() - 1;
+	board[x][y].get(lastPos).setStone();
+    }
+    
     public void calculateNumStacks(){
 	for (int i = 0; i < size; i++) {
 	    for (int j = 0; j < size; j++) {
@@ -420,4 +429,45 @@ public class Board{
 	    }
 	}
     }
+
+    /*~~~~~~~~~~~~~ACCESSORS~~~~~~~~~~~~~*/
+    /*
+      int getSize()
+      precondition: an instantiated board
+      postcondition: returns size variable of board
+    */
+    public int getSize(){
+	return size;
+    }
+    
+    /*
+      public static boolean road(int[][] checked, int x, int y){
+      if(checked[x][y] == 2){
+      return true;
+	}
+
+	if(checked[x][y] <= 0){
+	    return false;
+	}
+    
+	if(checked[x][y] == 1){
+	    checked[x][y] = 0;
+	    return ( (((x - 1) >= 0) && road(checked, x - 1, y)) ||
+		     (((x + 1) < checked.length) && road(checked, x + 1, y)) ||
+		     (((y - 1) >= 0) && road(checked, x, y - 1)) ||
+		     (((y + 1 ) < checked.length) && road(checked, x, y + 1)));
+	}
+	return false;	
+    }
+
+    public static void main(String[] args){
+	int[][] checked = {{0, 0, 1, 0, 0},
+			   {0, 0, 1, 0, 0},
+			   {0, 1, 1, 1, 1},
+			   {1, 1, 0, 0, 0},
+			   {2, 0, 0, 0, 0}};
+	
+	System.out.print(road(checked, 0, 2));
+    }
+    */
 }
