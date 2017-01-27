@@ -84,7 +84,7 @@ public class Player {
 	int tempC = 0;
 	if(color == 0)
 	    tempC = 1;
-	woah.board[x][y].add(new Stone(tempC, x, y, false));	
+	woah.board[x][y].add(new Stone(tempC, false));	
     }
     
     public void turn(Board woah){
