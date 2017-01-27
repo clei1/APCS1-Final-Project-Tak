@@ -194,9 +194,9 @@ public class Player {
 	    x = Keyboard.readInt();
 	    y = Keyboard.readInt();
 	    while((x < 0) ||
-		  (x >= size) ||
+		  (x >= woah.getSize()) ||
 		  (y < 0) ||
-		  (y >= size)){
+		  (y >= woah.getSize())){
 		System.out.println("Your chosen location doesn't exist. Have you been eating plum bob? If so, that was a bad decision.");
 		x = Keyboard.readInt();
 		y = Keyboard.readInt();
@@ -219,9 +219,9 @@ public class Player {
 	int x = Keyboard.readInt();
 	int y = Keyboard.readInt();
 	while((x < 0) ||
-	      (x >= size) ||
+	      (x >= woah.getSize()) ||
 	      (y < 0) ||
-	      (y >= size)){
+	      (y >= woah.getSize())){
 	    System.out.println("Your chosen location doesn't exist. Have you been eating plum bob? That was a bad decision.");
 	     x = Keyboard.readInt();
 	     y = Keyboard.readInt();
@@ -232,16 +232,16 @@ public class Player {
 	    x = Keyboard.readInt();
 	    y = Keyboard.readInt();
 	    while((x < 0) ||
-		  (x >= size) ||
+		  (x >= woah.getSize()) ||
 		  (y < 0) ||
-		  (y >= size)){
+		  (y >= woah.getSize())){
 		System.out.println("Your chosen location doesn't exist. Have you been eating plum bob? If so, that was a bad decision.");
 		x = Keyboard.readInt();
 		y = Keyboard.readInt();
 	    }
 	}
 
-	while("stack is under their control"){
+	while(woah.stackOwner(x, y) != color){
 	    System.out.println("This stack is not under your control so you cannot move it! In order for you to control the stack, the top piece of the stack must be your color!");
 	    x = Keyboard.readInt();
 	    y = Keyboard.readInt();
@@ -250,9 +250,9 @@ public class Player {
 		x = Keyboard.readInt();
 		y = Keyboard.readInt();
 		while((x < 0) ||
-		      (x >= size) ||
+		      (x >= woah.getSize()) ||
 		      (y < 0) ||
-		      (y >= size)){
+		      (y >= woah.getSize())){
 		    System.out.println("Your chosen location doesn't exist. Have you been eating plum bob? If so, that was a bad decision.");
 		    x = Keyboard.readInt();
 		    y = Keyboard.readInt();
@@ -264,7 +264,7 @@ public class Player {
 	    System.out.println("This stack is surrounded by immovable parts. Since your stack does not have capstone at the top, you cannot move. If you had a capstone, you could break down the walls surrounding you.");
 	    x = Keyboard.readInt();
 	    y = Keyboard.readInt();
-	    while("stack is under their control"){
+	    while(woah.stackOwner(x, y) != color){
 		System.out.println("This stack is not under your control so you cannot move it! In order for you to control the stack, the top piece of the stack must be your color!");
 		x = Keyboard.readInt();
 		y = Keyboard.readInt();
@@ -273,9 +273,9 @@ public class Player {
 		    x = Keyboard.readInt();
 		    y = Keyboard.readInt();
 		    while((x < 0) ||
-			  (x >= size) ||
+			  (x >= woah.getSize()) ||
 			  (y < 0) ||
-			  (y >= size)){
+			  (y >= woah.getSize())){
 			System.out.println("Your chosen location doesn't exist. Have you been eating plum bob? If so, that was a bad decision.");
 			x = Keyboard.readInt();
 			y = Keyboard.readInt();
@@ -351,21 +351,15 @@ public class Player {
 	    move = Keyboard.readInt();
 	}
 
-	switch(move){
-	case left:
+	if(move == left)
 	    direction = "left";
-	    break;
-	case right:
+	if(move == right)
 	    direction = "right";
-	    break;
-	case up:
+	if(move == up)
 	    direction = "up";
-	    break;
-	case down:
+	if(move == down)
 	    direction = "down";
-	    break;
-	}
-
+	
 	//=======================================================================================================================================================================
 	
 	int startX = x;
@@ -397,7 +391,7 @@ public class Player {
 			else{
 			    System.out.println("How many stones would you like to leave behind? Since you have moved already, you must leave at least one stone behind!");
 			    leftB = Keyboard.readInt();
-			    while(leftB < 1 || leftB > stackSize){
+			    while((leftB < 1 || leftB > stackSize)){
 				System.out.println("You can't leave negative stones or no stones behind!");
 				leftB = Keyboard.readInt();
 			    }
@@ -499,14 +493,14 @@ public class Player {
 	for(int a = 0; a < leftB; a ++){
 	    woah.board[x][y].add(stack.get(a));
 	}    
-        for(int a = leftB; a < stack.size; a ++){
+        for(int a = leftB; a < stack.size(); a ++){
 	    temp.add(stack.get(a));
 	}
 	return temp;
     }
 
     public void addStack(Board woah, int x, int y, ArrayList<Piece> stack){
-	for(int count = 0; count < stack.size; count ++){
+	for(int count = 0; count < stack.size(); count ++){
 	    woah.board[x][y].add(stack.get(count));
 	} 
     }
