@@ -204,11 +204,11 @@ public class Player {
 	}
 
 	if(move == stone)
-	    woah.board[x][y].add(new Stone(color, x, y, false));
+	    woah.board[x][y].add(new Stone(color, false));
 	if(move == wall)
-	    woah.board[x][y].add(new Stone(color, x, y, true));
+	    woah.board[x][y].add(new Stone(color, true));
 	if(move == capstone)
-	    woah.board[x][y].add(new Capstone(color, x, y, false));
+	    woah.board[x][y].add(new Capstone(color, false));
     }
     
     public void moveStack(Board woah){
@@ -508,52 +508,5 @@ public class Player {
 	for(int count = 0; count < stack.size(); count ++){
 	    woah.board[x][y].add(stack.get(count));
 	} 
-    }
-    
-    public void moveStack( int x, int y, int stackSize, String direction, Board b ) {
-	ArrayList<Piece> stack =  b.board[x][y];
-	int size = stack.size();
-	
-	//temporary ArrayList for the stack the user is moving
-	ArrayList<Piece> holder = new ArrayList<Piece>();
-	for (int i = size-1; i > size-1-stackSize; i--) {
-	    holder.add( stack.remove(i) );
-	}
-	if (direction.equals("up")) {
-	    for (Piece p : holder) {
-		b.board[x-1][y].add(p);
-	    }
-	    x--;
-	}
-	else if (direction.equals("left")) {
-	    for (Piece p : holder) {
-		b.board[x][y-1].add(p);
-	    }
-	    y--;
-	}
-	else if (direction.equals("down")) {
-	    for (Piece p : holder) {
-		b.board[x+1][y].add(p);
-	    }
-	    x++;
-	}
-	else if (direction.equals("right")) {
-	    for (Piece p : holder) {
-		b.board[x][y+1].add(p);
-	    }
-	    y++;
-	}
-
-	stack = b.board[x][y];
-	size = stack.size();
-	
-	//if the top of the tile that the player is moving a capstone to is a wall, flatten it
-	if ( (stack.get(size-1) instanceof Capstone) && (stackSize == 1) ) {
-	    try {
-		((Capstone)(stack.get(size-1))).flattenWall((Stone)stack.get(size-2));
-	    }
-	    catch (Exception e) {}
-	}
-
     }
 }
