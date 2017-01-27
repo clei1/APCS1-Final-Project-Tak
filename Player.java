@@ -55,6 +55,12 @@ public class Player {
 		if(numCap > 0) {
 		    b.board[x][y].add(new Capstone(color, x, y, false));
 		    numCap--;
+		    if (color == 0) {
+			b.numBlackCapstones++;
+		    }
+		    else {
+			b.numWhiteCapstones++;
+		    }
 		}
 		else
 		    throw new IllegalArgumentException("No more capstones to place.");
@@ -66,6 +72,12 @@ public class Player {
 		if(numStones > 0) {
 		    b.board[x][y].add(new Stone(color, x, y, false));
 		    numStones--;
+		    if (color == 0) {
+			b.numBlackStones++;
+		    }
+		    else {
+			b.numWhiteStones++;
+		    }
 		}
 		else
 		    throw new IllegalArgumentException("No more stones to place.");
@@ -76,6 +88,12 @@ public class Player {
 		if(numStones > 0) {
 		    b.board[x][y].add(new Stone(color, x, y, true));
 		    numStones--;
+		    if (color == 0) {
+			b.numBlackWalls++;
+		    }
+		    else {
+			b.numWhiteWalls++;
+		    }
 		}
 		else
 		    throw new IllegalArgumentException("No more stones to place.");
@@ -152,6 +170,14 @@ public class Player {
 	if ( (stack.get(size-1) instanceof Capstone) && (stackSize == 1) ) {
 	    try {
 		((Capstone)(stack.get(size-1))).flattenWall((Stone)stack.get(size-2));
+		if (stack.get(size-2).color == 0) {
+		    b.numBlackWalls--;
+		    b.numBlackStones++;
+		}
+		else {
+		    b.numWhiteWalls--;
+		    b.numWhiteStones++;
+		}
 	    }
 	    catch (Exception e) {}
 	}

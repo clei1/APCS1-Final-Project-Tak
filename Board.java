@@ -4,8 +4,10 @@ public class Board{
     
     /*~~~~~~~~~~~~~INSTANCE VARIABLES~~~~~~~~~~~~~*/
     ArrayList<Piece>[][] board; //the board is represented by a 2D array
+    ArrayList<Piece>[][] oldBoard; //a copy of the board one turn ago, performed with a deep copy
     int size;//size is the length and width of the board, they are equal because it is a square
     int[][] checked;
+    // for stats
     int numBlackStacks;
     int numWhiteStacks;
     int numBlackStones;
@@ -14,9 +16,10 @@ public class Board{
     int numWhiteStones;
     int numWhiteWalls;
     int numWhiteCapstones;
-    int numRoads;
+    int numRoads; //not implemented
+    int numTurns;
 
-     /*~~~~~~~~~~~~~DEFAULT CONSTRUCTOR~~~~~~~~~~~~~*/
+     /*~~~~~~~~~~~~~OVERLOADED CONSTRUCTOR~~~~~~~~~~~~~*/
     //Input: Takes a player inputted number between 3 to 8, defining the size
     public Board(int s){
 	board = new ArrayList[s][s]; //created board with player defined size
@@ -315,4 +318,17 @@ public class Board{
 	System.out.print(road(checked, 0, 2));
     }
     */
+    public void calculateNumStacks(){
+	for (int i = 0; i < size; i++) {
+	    for (int j = 0; j < size; j++) {
+		int w = stackOwner(i,j);
+		if (w == 0) {
+		    numBlackStacks++;
+		}
+		else if (w == 1) {
+		    numWhiteStacks++;
+		}
+	    }
+	}
+    }
 }

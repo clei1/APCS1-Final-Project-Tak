@@ -353,30 +353,28 @@ public class Woo {
 	// DISPLAY WHOM WON
 	if (woah.isRoad(0)) {
 	    System.out.println("\nBlack won!");
-	    	
-	    try{
-		PrintWriter outputStream = new PrintWriter("stats.txt");
-		outputStream.print("woazaaa");
-		outputStream.close();
-		System.out.println("Game stats have been generated! Check them out at stats.txt in this directory.");
-	    }
-	    catch(Exception e){
-		System.out.println("Stats generation failed :/ So here's the printed in terminal version!");
-	    }
 	}
 	else {
 	    System.out.println("\nWhite won!");
-	    	
-	    try{
-		PrintWriter outputStream = new PrintWriter("stats.txt");
-		stats+= totalTurns+"\n";
-		outputStream.print(stats);
-		outputStream.close();
-		System.out.println("Game stats have been generated! Check them out at stats.txt in this directory.");
-	    }
-	    catch(Exception e){
-		System.out.println("Stats generation failed");
-	    }
+	}	
+	try{
+	    PrintWriter outputStream = new PrintWriter("stats.txt");
+	    woah.calculateNumStacks();
+	    stats+= "Turns Played: " + totalTurns+"\n";
+	    stats+= "Black Stones Placed: " + woah.numBlackStones + "\n";
+	    stats+= "Black Walls Placed: " + woah.numBlackWalls + "\n";
+	    stats+= "Black Capstones Placed: " + woah.numBlackCapstones + "\n";
+	    stats+= "Black Stacks Controlled At End: " + woah.numBlackStacks + "\n";
+	    stats+= "White Stones Placed: " + woah.numWhiteStones + "\n";
+	    stats+= "White Walls Placed: " + woah.numWhiteWalls + "\n";
+	    stats+= "White Capstones Placed: " + woah.numWhiteCapstones + "\n";
+	    stats+= "White Stacks Controlled At End: " + woah.numWhiteStacks + "\n";
+	    outputStream.print(stats);
+	    outputStream.close();
+	    System.out.println("Game stats have been generated! Check them out at stats.txt in this directory.");
+	}
+	catch(Exception e){
+	    System.out.println("Stats generation failed");
 	}
 	
     }
