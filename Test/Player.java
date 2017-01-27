@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import cs1.Keyboard;
 
 public class Player {
 
@@ -42,29 +43,29 @@ public class Player {
 	}
     }
 
-    public String getName()
+    public String getName(){
 	return name;
-
-    public int getColor()
+    }
+    public int getColor(){
 	return color;
-
-    public boolean hasStones()
+    }
+    public boolean hasStones(){
 	return (numStones +  numCap > 0);
-
-    public boolean noPiecesLeft()
+    }
+    public boolean noPiecesLeft(){
 	return ! hasStones();
-
-    public boolean hasStacks(Board woah)
+    }
+    public boolean hasStacks(Board woah){
 	return woah.hasStacks(color);
- 
+    }
     public void firstTurn(Board woah){
 	System.out.println("During the first turn, players will place one of their opponent's flatstones down on the board. You are allowed to place their piece on any tile on the board. Pick a location!");
 	int x = Keyboard.readInt();
 	int y = Keyboard.readInt();
 	while((x < 0) ||
-	      (x >= size) ||
+	      (x >= woah.getSize()) ||
 	      (y < 0) ||
-	      (y >= size)){
+	      (y >= woah.getSize())){
 	    System.out.println("Your chosen location doesn't exist. Have you been eating plum bob? If so, that was a bad decision.");
 	     x = Keyboard.readInt();
 	     y = Keyboard.readInt();
@@ -94,12 +95,12 @@ public class Player {
 	int viewStack = -1;
 	int move = -1;
 	
-	if(p.hasStones()){
+	if(hasStones()){
 	    moveStone = counter;
 	    System.out.println(counter + ": Place a piece.");
 	    counter += 1;
 	}
-	if(p.hasStacks(woah)){
+	if(hasStacks(woah)){
 	    moveStack = counter;
 	    System.out.println(counter + ": Move a stack.");
 	    counter += 1;
@@ -110,7 +111,7 @@ public class Player {
 	    counter += 1;
 	}
         
-        int move = Keyboard.readInt();
+        move = Keyboard.readInt();
 	
 	while ((move <= 0) || (move >= counter)) {
 	    System.out.println("There are three things all wise men fear: the sea in storm, a night with no moon, and the anger of a gentle man... Please use your eyes and brain.");
@@ -127,16 +128,27 @@ public class Player {
 	    }
 	}
 	
-	switch(move){
-	    case moveStone:
-		placeStone (woah);
-		break;
-	    case moveStack:
-	        moveStack (woah);
-		break;
+        if(move == moveStone)
+	    placeStone (woah);
+	if(move == moveStack)
+	    moveStack (woah);
+    }
+    
+    public static void displayStack(Board woah ) {
+	System.out.print("Location: ");
+	int x = Keyboard.readInt();
+	int y = Keyboard.readInt();
+	try {
+	    woah.displayStack(x, y);
+	}
+	catch (Exception e) {
+	    System.out.println("Where is this unknown land?");
+	    System.out.print("Location: ");
+	    x = Keyboard.readInt();
+	    y = Keyboard.readInt();
 	}
     }
-
+    
     public void placeStone(Board woah){
 	System.out.println("Choose a piece to place: ");
 	int counter = 1;
@@ -159,7 +171,7 @@ public class Player {
 	    counter ++;
 	}
 
-	int move = Keyboard.readInt();
+        move = Keyboard.readInt();
 	while (move <= 0 || move >= counter) {
 	    System.out.println("There are three things all wise men fear: the sea in storm, a night with no moon, and the anger of a gentle man... Please use your eyes and brain. \nIf a piece type is not showing up, it is because you don't have enough of that piece.");
 	    move = Keyboard.readInt();
@@ -169,9 +181,9 @@ public class Player {
 	int x = Keyboard.readInt();
 	int y = Keyboard.readInt();
 	while((x < 0) ||
-	      (x >= size) ||
+	      (x >= woah.getSize()) ||
 	      (y < 0) ||
-	      (y >= size)){
+	      (y >= woah.getSize())){
 	    System.out.println("Your chosen location doesn't exist. Have you been eating plum bob? If so, that was a bad decision.");
 	     x = Keyboard.readInt();
 	     y = Keyboard.readInt();
@@ -191,17 +203,13 @@ public class Player {
 	    }
 	}
 
-	switch(move){
-	    case stone:
-		b.board[x][y].add(new Stone(color, x, y, false));
-		break;
-	    case wall:
-		b.board[x][y].add(new Stone(color, x, y, true));
-		break;
-	    case capstone:
-		b.board[x][y].add(new Capstone(color, x, y, false));
-		break;
-	}
+	if(move == stone)
+	    woah.board[x][y].add(new Stone(color, x, y, false));
+	if(move == wall)
+
+	    woah.board[x][y].add(new Stone(color, x, y, true));
+	if(move == capstone)
+	    woah.board[x][y].add(new Capstone(color, x, y, false));
     }
     
     public void moveStack(Board woah){
@@ -278,8 +286,8 @@ public class Player {
 	
 	//=======================================================================================================================================================================
 	
-	int stackSize = woah.getStackSize(int x, int y);
-	ArrayList<Piece> stack = woah.getStack(int x, int y, stackSize);
+	int stackSize = woah.getStackSize(x, y);
+	ArrayList<Piece> stack = woah.getStack(x, y, stackSize);
 	
 	//=======================================================================================================================================================================
 	
@@ -488,17 +496,17 @@ public class Player {
 
     public ArrayList<Piece> addStack(Board woah, int x, int y, ArrayList<Piece> stack, int leftB){
 	ArrayList<Piece> temp = new ArrayList<Piece>(stack.size() - leftB);
-	while(int count = 0; count < leftB; count ++){
-	    woah.board[x][y].add(stack.get(count));
+	for(int a = 0; a < leftB; a ++){
+	    woah.board[x][y].add(stack.get(a));
 	}    
-        while(int count = leftB; count < stack.size; count ++){
-	    temp.add(stack.get(count));
+        for(int a = leftB; a < stack.size; a ++){
+	    temp.add(stack.get(a));
 	}
 	return temp;
     }
 
     public void addStack(Board woah, int x, int y, ArrayList<Piece> stack){
-	while(int count = 0; count < stack.size; count ++){
+	for(int count = 0; count < stack.size; count ++){
 	    woah.board[x][y].add(stack.get(count));
 	} 
     }

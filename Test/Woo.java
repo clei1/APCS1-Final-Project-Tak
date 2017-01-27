@@ -125,7 +125,7 @@ public class Woo{
     }
 
     public String getWinner(){
-	p1Color = player1.getColor();
+	int p1Color = player1.getColor();
 	if(woah.isRoad(0) && woah.isRoad(1)){
 	    if(totalTurns % 2 == 0)
 		return ("Two roads were created by " + player1.getName() + "! They win the game!");
@@ -140,19 +140,20 @@ public class Woo{
 		return (player2.getName() +" won because they have successfully created a road!");
 	}
 	switch(woah.stackWinner(player1, player2)){
-	    case -1:
-		return ("If the board is filled or if one of the players run out of stones to place, the player with more flatstones on top of stacks wins! " + player1.getName() + "and " + player2.getName() + " both have the same amount of pieces so it is a tie!");
-	    case 1:
-		return ("If the board is filled or if one of the players run out of stones to place, the player with more flatstones on top of stacks wins! " + player1.getName() + " wins because they have more pieces!");
-	    case 2:
-		return ("If the board is filled or if one of the players run out of stones to place, the player with more flatstones on top of stacks wins! " + player2.getName() + " wins because they have more pieces!");
+	case -1:
+	    return ("If the board is filled or if one of the players run out of stones to place, the player with more flatstones on top of stacks wins! " + player1.getName() + "and " + player2.getName() + " both have the same amount of pieces so it is a tie!");
+	case 1:
+	    return ("If the board is filled or if one of the players run out of stones to place, the player with more flatstones on top of stacks wins! " + player1.getName() + " wins because they have more pieces!");
+	case 2:
+	    return ("If the board is filled or if one of the players run out of stones to place, the player with more flatstones on top of stacks wins! " + player2.getName() + " wins because they have more pieces!");
 	}
+	return "";
     }
     
     public void gameEnd(){
-	String winner = woah.getWinner();
-	System.out.println(winner);
+	System.out.println(getWinner());
 	System.out.println("Would you like statistics of how your game went? Type in yes or no.");
+	String answer = Keyboard.readString();
 	while(!(answer.equals("yes") ||
 		answer.equals("y")   ||
 		answer.equals("no")  ||
